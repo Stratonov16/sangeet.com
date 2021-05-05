@@ -4,14 +4,11 @@
 console.log("hello world :o");
 
 // define variables that reference elements on our page
-const dreamsList = document.getElementById("dreams");
-const dreamsForm = document.querySelector("form");
+const mainContent = document.getElementById("main-content");
 
 // a helper function that creates a list item for a given dream
-function appendNewDream(dream) {
-  const newListItem = document.createElement("li");
-  newListItem.innerText = dream;
-  dreamsList.appendChild(newListItem);
+function search(data) {
+  // TODO
 }
 
 // fetch the initial list of dreams
