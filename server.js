@@ -25,6 +25,7 @@ const listener = app.listen(process.env.PORT, () => {
 
 // Route for handling Spotify login request
 app.get('/spotify/login', function(req, res) {
+  // define scopes from Spotify documentation
   var scopes = 'user-read-private user-read-email';
   res.redirect('https://accounts.spotify.com/authorize' +
     '?response_type=code' +
@@ -35,5 +36,6 @@ app.get('/spotify/login', function(req, res) {
 
 app.get('/spotify/callback', function(req, res) {
   const {code} = req.query
+  console.log({code})
   res.status(204).send()
 });
