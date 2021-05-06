@@ -38,9 +38,11 @@ app.get('/spotify/callback', async function(req, res) {
   const {code} = req.query
   console.log({code})
   
-  const accessToken = await getAccessToken(code)
+  
+  const accessToken = await getAccessToken(code) // getAccessToken method is defined at the bottom of the file
   console.log({accessToken})
-
+  // redirect to homepage with the access token in the query params
+  res.redirect("/" + '?access_token=' + accessToken)
 });
 
 // Start the server! listen for requests :)
@@ -49,11 +51,8 @@ const listener = app.listen(process.env.PORT, () => {
 });
 
 
-
 // a method for making a POST request to Spotify to get an access token 
 const getAccessToken = async (code) => {
-
-  
   const headers = {
     headers: {
       Accept: 'application/json',
@@ -68,7 +67,7 @@ const getAccessToken = async (code) => {
   const data = {
     grant_type: 'authorization_code',
     code,
-    redirect_uri: process.env.REDIRECT_URI // only used for validation - does not actually redirect. Must match redirect URI from first authorization call
+    redirect_uri: process.env.REDIRECT_URI // REDIRECT_URI here is only used for validation - does not actually redirect. Must match redirect URI from first authorization call
   };
 
   try {
