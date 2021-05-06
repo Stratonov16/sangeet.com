@@ -37,29 +37,44 @@ app.get('/spotify/login', function(req, res) {
 
 // Spotify sends a GET request back to this REDIRECT_URL we specified with a grant code in the url query  
 // We will send this code back to Spotify to get an access token
-app.get('/spotify/callback', function(req, res) {
+app.get('/spotify/callback', async function(req, res) {
   const {code} = req.query
   console.log({code})
-  let code = req.query.code || null
-  let authOptions = {
-    url: 'https://accounts.spotify.com/api/token',
-    form: {
-      code: code,
-      redirect_uri,
-      grant_type: 'authorization_code'
-    },
-    headers: {
-      'Authorization': 'Basic ' + (new Buffer(
-        process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET
-      ).toString('base64'))
-    },
-    json: true
-  }
-  // axios is a javascript library for sending 
-  axios.post(authOptions, function(error, response, body) {
-    var access_token = body.access_token
-    let uri = process.env.FRONTEND_URI || 'http://localhost:3000'
-    res.redirect(uri + '?access_token=' + access_token)
-  })
+  
+  const accessToken = await getAccessToken(code)
 
 });
+
+// a method for making a POST request to Spotify to get an access token 
+const getAccessToken = async (code) => {
+  const clientId = process.env.CLIENT_ID;
+  const clientSecret = process.env.CLIENT_SECRET;
+  
+  const headers = {
+    headers: {
+      Accept: 'application/json',
+      'Authorization': 'application/x-www-form-urlencoded',
+    },
+    auth: {
+      username: clientId,
+      password: clientSecret,
+    },
+  };
+  const data = {
+    grant_type: 'authorization_code',
+    code,
+    redirect_uri: process.env.REDIRECT_URI // only used for validation - does not actually redirect. Must match redirect URI from first authorization call
+  };
+
+  try {
+    const response = await axios.post(
+      'https://accounts.spotify.com/api/token',
+      qs.stringify(data),
+      headers
+    );
+    console.log(response.data.access_token);
+    return response.data.access_token;
+  } catch (error) {
+    console.log(error);
+  }
+};
