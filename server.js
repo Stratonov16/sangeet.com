@@ -23,7 +23,8 @@ const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
 
-app.get('/login', function(req, res) {
+// Route for handling Spotify login request
+app.get('/spotify/login', function(req, res) {
   var scopes = 'user-read-private user-read-email';
   res.redirect('https://accounts.spotify.com/authorize' +
     '?response_type=code' +
@@ -32,8 +33,7 @@ app.get('/login', function(req, res) {
     '&redirect_uri=' + encodeURIComponent(process.env.REDIRECT_URL));
 });
 
-app.get('/callback', function(req, res) {
-  const {code} = req.params
-  console.log({code})
+app.get('/spotify/callback', function(req, res) {
+  const {code} = req.query
   res.status(204).send()
 });
