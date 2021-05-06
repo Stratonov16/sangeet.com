@@ -31,3 +31,9 @@ app.get('/login', function(req, res) {
     (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
     '&redirect_uri=' + encodeURIComponent(process.env.REDIRECT_URL));
 });
+
+app.get('/callback', function(req, res) {
+  const {code} = req.params
+  console.log({code})
+  res.status(204).send()
+});
