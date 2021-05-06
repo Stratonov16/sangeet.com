@@ -37,5 +37,8 @@ app.get('/spotify/login', function(req, res) {
 app.get('/spotify/callback', function(req, res) {
   const {code} = req.query
   console.log({code})
-  res.status(204).send()
+  res.redirect('https://accounts.spotify.com/api/token' +
+    '?response_type=code' +
+    '&redirect_uri=' + encodeURIComponent(process.env.REDIRECT_URL));
+
 });
