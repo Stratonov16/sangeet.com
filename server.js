@@ -51,16 +51,16 @@ const listener = app.listen(process.env.PORT, () => {
 });
 
 
-// a method for making a POST request to Spotify to get an access token 
+// This is a function for making a POST request to Spotify to get an access token with a given code
 const getAccessToken = async (code) => {
+  const clientId = process.env.CLIENT_ID
+  const clientSecret = process.env.CLIENT_SECRET
+  
   const headers = {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    auth: {
-      username: process.env.CLIENT_ID,
-      password: process.env.CLIENT_SECRET,
+      'Authorization': 'Basic ' + (clientId + ":" + clientSecret).toString('base64') // Spotify authorizes this request with a base64 encoded string 'Basic CLIENT_ID:CLIENT_SECRET'
     },
   };
   
@@ -71,14 +71,13 @@ const getAccessToken = async (code) => {
   };
 
   try {
-    // use axios to make a post request to the Spotify API with the code to exchange for an access token 
-    const response = await axios.post(
-      'https://accounts.spotify.com/api/token' +
+    // build the POST url
+    const url = 'https://accounts.spotify.com/api/token' +
       '?grant_type=authorization_code' + 
       '&redirect_uri='+ process.env.REDIRECT_URI +
-      '&code=' + code,
-      headers
-    );
+      '&code=' + code
+    // use axios to make a post request to the Spotify API with the code to exchange for an access token 
+    const response = await axios.post(url, data, { headers });
     console.log(response.data.access_token);
     return response.data.access_token;
   } catch (error) {
