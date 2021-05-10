@@ -77,7 +77,7 @@ const getAccessToken = async (code) => {
       '&redirect_uri='+ process.env.REDIRECT_URI +
       '&code=' + code
     // use axios to make a post request to the Spotify API with the code to exchange for an access token 
-    const response = await axios.post(url, data, { headers });
+    const response = await axios.post(url, {}, { headers });
     console.log(response.data.access_token);
     return response.data.access_token;
   } catch (error) {
