@@ -21,6 +21,26 @@ app.get("/", (request, response) => {
   response.sendFile(__dirname + "/views/index.html");
 });
 
+app.get("/login", (request, response) => {
+  const client = new AuthorizationCode({
+    client: {
+      id: process.env.CLIENT_ID,
+      secret: process.env.CLIENT_SECRET,
+    },
+    auth: {
+      tokenHost: 'https://accounts.spotify.com',
+      tokenPath: '/api/token',
+      authorizePath: '/authorize',
+    },
+  });
+
+  // Authorization uri definition
+  const authorizationUri = client.authorizeURL({
+    redirect_uri: process.env.REDIRECT_URI,
+    scope: 'user-read-private user-read-email',
+  });
+  
+})
 
 
 
