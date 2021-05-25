@@ -6,6 +6,7 @@
 const express = require("express");
 const axios = require("axios");
 const { getAccessToken } = require("./spotify/auth");
+const { searchTracks } = require("./spotify/actions");
 
 // initialize an instance of express called 'app' 
 const app = express();
@@ -40,6 +41,9 @@ app.post("/recommendations", async (req, res) => {
   // otherwise, start workflow
   
   // 1. get track id from search
+  
+  const tracks = await searchTracks(accessToken, { track: 'dancing queen', artist: 'abba'})
+  console.log({tracks})
   
   // 2. get song recommendations
 });
