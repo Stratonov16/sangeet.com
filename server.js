@@ -42,7 +42,9 @@ app.get("/login", (request, response) => {
 })
 
 
-
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening at port ${process.env.PORT}`)
+})
 
 
 
