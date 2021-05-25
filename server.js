@@ -33,18 +33,20 @@ app.get("/", (req, res) => {
 
 app.get("/login", (req, res) => {
   // get the current date as ISO String - we will use this as a unique key
-  const state = new Date().toISOString();
-  //set up the response to send a cookie to the browser
-  res.cookie(AUTH_STATE_KEY, state);
+  // const state = new Date().toISOString();
+  // //set up the response to send a cookie to the browser
+  // res.cookie(AUTH_STATE_KEY, state);
   // build authorization url 
-  const authUrl = "https://accounts.spotify.com/authorize?" +
-    querystring.stringify({
+  const params = querystring.stringify({
       response_type: 'code',  // for Authorization Code grant type
       client_id: SPOTIFY_CLIENT_ID,
       scope: AUTH_SCOPE,
       redirect_uri: SPOTIFY_REDIRECT_URI,
-      state
+      // state
     })
+  const authUrl = "https://accounts.spotify.com/authorize?" + params
+    
+  console.log({authUrl})
   // redirect user to authUrl so they can grant permission to access Spotify
   res.redirect(authUrl);
 });
@@ -74,7 +76,7 @@ app.get('/callback', function(req, res) {
         grant_type: 'authorization_code'
       },
       headers: {
-        'Authorization': 'Basic ' + (new Buffer(SPOTIFY_CLIENT_ID + ':' + SPOTIFY_CLIENT_SECRET).toString('base64'))
+        'Authorization': 'Basic ' + (Buffer.from(SPOTIFY_CLIENT_ID + ':' + SPOTIFY_CLIENT_SECRET).toString('base64'))
       },
       json: true
     };
