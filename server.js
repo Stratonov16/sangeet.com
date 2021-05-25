@@ -24,7 +24,7 @@ app.use(express.static("public"));
 
 // return the index.html file when a GET request is made to the root path "/"
 app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
+  response.sendFile(__dirname + "/public/index.html");
 });
 
 app.get("/login", (request, response) => {
