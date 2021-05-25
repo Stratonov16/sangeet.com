@@ -7,7 +7,7 @@ console.log("hello world :o");
 const mainContent = document.getElementById("main-content");
 
 // a helper function that creates a list item for a given dream
-function search(data) {
+function submitForm(data) {
   // TODO
 }
 

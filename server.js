@@ -25,11 +25,18 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-app.post("/recommendations", (req, res) => {
+app.post("/recommendations", async (req, res) => {
   // TODO
-  
+  let accessToken
   // first, get access token from Spotify 
-  const getAccessToken
+  try {
+    accessToken = await getAccessToken()
+  } catch(err) {
+    console.error(err)
+  }
+  
+  console.log({accessToken})
+  
 });
 
 
