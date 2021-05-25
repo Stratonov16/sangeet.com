@@ -32,8 +32,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  // get the current date in epoch time - we will use this as a unique key
-  const state = new Date.toISOString();
+  // get the current date as ISO String - we will use this as a unique key
+  const state = new Date().toISOString();
   //set up the response to send a cookie to the browser
   res.cookie(AUTH_STATE_KEY, state);
   // build authorization url 
@@ -50,21 +50,22 @@ app.get("/login", (req, res) => {
 });
 
 app.get('/callback', function(req, res) {
+  console.log('entered callback')
 
   // your application requests refresh and access tokens
   // after checking the state parameter
 
   var code = req.query.code || null;
   var state = req.query.state || null;
-  var storedState = req.cookies ? req.cookies[AUTH_STATE_KEY] : null;
+  // var storedState = req.cookies ? req.cookies[AUTH_STATE_KEY] : null;
 
-  if (state === null || state !== storedState) {
-    res.redirect('/#' +
-      querystring.stringify({
-        error: 'state_mismatch'
-      }));
-  } else {
-    res.clearCookie(AUTH_STATE_KEY);
+  // if (state === null || state !== storedState) {
+  //   res.redirect('/#' +
+  //     querystring.stringify({
+  //       error: 'state_mismatch'
+  //     }));
+  // } else {
+    // res.clearCookie(AUTH_STATE_KEY);
     var authOptions = {
       url: 'https://accounts.spotify.com/api/token', // Spotify access token url
       data: {
@@ -78,37 +79,38 @@ app.get('/callback', function(req, res) {
       json: true
     };
 
-    axios.post(authOptions, function(error, response, body) {
-      if (!error && response.statusCode === 200) {
+    axios.post(authOptions).then((response)=> {
+      console.log({response})
+    }).catch(e => console.log(e))
 
-        var access_token = body.access_token,
-            refresh_token = body.refresh_token;
+//         var access_token = body.access_token,
+//             refresh_token = body.refresh_token;
 
-        var options = {
-          url: 'https://api.spotify.com/v1/me',
-          headers: { 'Authorization': 'Bearer ' + access_token },
-          json: true
-        };
+//         var options = {
+//           url: 'https://api.spotify.com/v1/me',
+//           headers: { 'Authorization': 'Bearer ' + access_token },
+//           json: true
+//         };
 
-        // use the access token to access the Spotify Web API
-        axios.get(options, function(error, response, body) {
-          console.log(body);
-        });
+//         // use the access token to access the Spotify Web API
+//         axios.get(options, function(error, response, body) {
+//           console.log(body);
+//         });
 
-        // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-          }));
-      } else {
-        res.redirect('/#' +
-          querystring.stringify({
-            error: 'invalid_token'
-          }));
-      }
-    });
-  }
+//         // we can also pass the token to the browser to make requests from there
+//         res.redirect('/#' +
+//           querystring.stringify({
+//             access_token: access_token,
+//             refresh_token: refresh_token
+//           }));
+//       } else {
+//         res.redirect('/#' +
+//           querystring.stringify({
+//             error: 'invalid_token'
+//           }));
+      // }
+    // });
+  // }
 });
 
 
