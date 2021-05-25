@@ -5,27 +5,9 @@
 // but feel free to use whatever libraries or frameworks you'd like through `package.json`.
 const express = require("express");
 const axios = require("axios");
-const { AuthorizationCode } = require('simple-oauth2');
 
 const app = express();
 
-const client = new AuthorizationCode({
-  client: {
-    id: process.env.CLIENT_ID,
-    secret: process.env.CLIENT_SECRET,
-  },
-  auth: {
-    tokenHost: 'https://accounts.spotify.com',
-    tokenPath: '/api/token',
-    authorizePath: '/authorize',
-  },
-});
-
-// Authorization uri definition
-const authorizationUri = client.authorizeURL({
-  redirect_uri: process.env.REDIRECT_URI,
-  scope: 'user-read-private user-read-email',
-});
 
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
@@ -37,8 +19,7 @@ app.get("/", (request, response) => {
 });
 
 app.get("/login", (request, response) => {
-  console.log(authorizationUri);
-  response.redirect(authorizationUri);
+  // TODO
 })
 
 
