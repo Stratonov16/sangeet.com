@@ -32,7 +32,6 @@ app.use(express.static("public"));
 
 // return the index.html file when a GET request is made to the root path "/"
 app.get("/", (req, res) => {
-  console.log('hi')
   res.sendFile(__dirname + "/public/index.html");
 });
 
