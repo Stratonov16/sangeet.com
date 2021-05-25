@@ -32,6 +32,7 @@ app.post("/recommendations", async (req, res) => {
   try {
     accessToken = await getAccessToken()
   } catch(err) {
+    // TODO: res with error 
     console.error(err)
   }
   
