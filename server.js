@@ -22,17 +22,22 @@ if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET || !SPOTIFY_REDIRECT_URI) {
   console.error("ERROR: Missing one or more critical Spotify environment variables. Check .env file");
 }
 
+
+// our fake database :) 
+const users = []
+
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 
 // return the index.html file when a GET request is made to the root path "/"
 app.get("/", (req, res) => {
+  console.log('hi')
   res.sendFile(__dirname + "/public/index.html");
 });
 
 app.get("/login", (req, res) => {
-  console.log({req})
+  
   // get the current date as ISO String - we will use this as a unique key
   // const state = new Date().toISOString();
   // //set up the response to send a cookie to the browser
@@ -53,7 +58,7 @@ app.get("/login", (req, res) => {
 });
 
 app.get('/callback', function(req, res) {
-  console.log('entered callback')
+  const userIp = req.headers["x-forwarded-for"]
 
   // your application requests refresh and access tokens
   // after checking the state parameter
