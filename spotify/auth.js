@@ -32,6 +32,6 @@ const getAccessToken = async () => {
   return encodedToken
 }
 
-// export the getAccessToken function so we can use it in server.js
+// export the functions so we can use them in server.js
 module.exports = { getAccessToken }
 

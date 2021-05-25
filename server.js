@@ -5,7 +5,7 @@
 // but feel free to use whatever libraries or frameworks you'd like through `package.json`.
 const express = require("express");
 const axios = require("axios");
-const { getAccessToken } = require("./auth");
+const { getAccessToken } = require("./spotify/auth");
 
 // initialize an instance of express called 'app' 
 const app = express();
@@ -39,7 +39,9 @@ app.post("/recommendations", async (req, res) => {
   
   // otherwise, start workflow
   
+  // 1. get track id from search
   
+  // 2. get song recommendations
 });
 
 
