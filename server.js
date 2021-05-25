@@ -5,6 +5,7 @@
 // but feel free to use whatever libraries or frameworks you'd like through `package.json`.
 const express = require("express");
 const axios = require("axios");
+const { getAccessToken } = require("./auth");
 
 // initialize an instance of express called 'app' 
 const app = express();
@@ -22,6 +23,13 @@ app.use(express.static("public"));
 // return the index.html file when a GET request is made to the root path "/"
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
+});
+
+app.post("/recommendations", (req, res) => {
+  // TODO
+  
+  // first, get access token from Spotify 
+  const getAccessToken
 });
 
 
