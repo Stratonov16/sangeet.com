@@ -15,9 +15,6 @@ const searchTracks = (accessToken, { track, artist }) => {
     .then((response) => {
       console.log(JSON.stringify(response.data));
     })
-    .catch((error) => {
-      console.log(error);
-    });
 }
 
 module.exports = { searchTracks }

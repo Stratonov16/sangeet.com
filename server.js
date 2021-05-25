@@ -37,12 +37,18 @@ app.post("/recommendations", async (req, res) => {
     console.error(err.message)
     res.status(500).send({ status: "error", message: "Internal Server Error"})
   }  
-  
+  console.log({accessToken})
   // otherwise, start workflow
   
   // 1. get track id from search
+  let trackId;
+  try {
+    const tracks = await searchTracks(accessToken, { track: 'dancing queen', artist: 'abba'})
+  } catch(e) {
+    res.status(500).send({})
+  }
   
-  const tracks = await searchTracks(accessToken, { track: 'dancing queen', artist: 'abba'})
+  
   console.log({tracks})
   
   // 2. get song recommendations

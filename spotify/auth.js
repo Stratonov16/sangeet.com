@@ -29,7 +29,7 @@ const getAccessToken = async () => {
 
   // Make a post request with axios to Spotify to get access token with client credentials
   const accessToken = await axios(authOptions)
-  return encodedToken
+  return accessToken
 }
 
 // export the functions so we can use them in server.js
