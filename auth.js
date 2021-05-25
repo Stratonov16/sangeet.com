@@ -6,13 +6,12 @@ const AUTH_SCOPE = "user-read-private user-read-email";
 
 const SPOTIFY_ACCESS_TOKEN_URL = "https://accounts.spotify.com/api/token"
 
-
+// A function that uses Client Credentials to obtain an access token from Spotify
 const getAccessToken = async () => {
   // Spotify requires a base64 encoded token made of the Client ID and Client Secret joined with ":"
   const encodedToken = toBase64(process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET)
 
-  const authOptions = {
-    url: SPOTIFY_ACCESS_TOKEN_URL, 
+  const authOptions = { 
     headers: {
       'Authorization': 'Basic ' + encodedToken
     },
@@ -22,7 +21,7 @@ const getAccessToken = async () => {
   };
   
   // Make a post request with axios to Spotify to get access token with client credentials
-  const accessToken = await axios.post(authOptions)
+  const accessToken = await axios.post(SPOTIFY_ACCESS_TOKEN_URL, authOptions)
   return accessToken
 }
 
