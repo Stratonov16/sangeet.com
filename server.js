@@ -32,6 +32,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
+  console.log({req})
   // get the current date as ISO String - we will use this as a unique key
   // const state = new Date().toISOString();
   // //set up the response to send a cookie to the browser
