@@ -6,8 +6,17 @@
 const express = require("express");
 const axios = require("axios");
 
+// initialize an instance of express called 'app' 
 const app = express();
 
+// get 
+const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID 
+const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET 
+const SPOTIFY_REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI
+
+if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET || !SPOTIFY_REDIRECT_URI) {
+  console.error('ERROR: Missing one or more critical Spotify environment variables. Check .env file')
+}
 
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
@@ -20,78 +29,11 @@ app.get("/", (request, response) => {
 
 app.get("/login", (request, response) => {
   // TODO
-})
+  console.log(request);
+});
 
-
+// after our app has been set up above, start listening on a port provided by Glitch
 app.listen(process.env.PORT, () => {
-  console.log(`Example app listening at port ${process.env.PORT}`)
-})
+  console.log(`Example app listening at port ${process.env.PORT}`);
+});
 
-
-
-
-// // This route is hit when a use clicks 'Login' in the website
-// // We redirect the user to the Spotify login in order to for them to sign in and obtain a grant code
-// // The grant code will be sent to the REDIRECT_URI specified in the 'redirect_uri' query parameter (defined in .env file)
-// app.get('/spotify/login', function(req, res) {
-//   // define scopes from Spotify documentation
-//   var scopes = 'user-read-private user-read-email';
-//   res.redirect('https://accounts.spotify.com/authorize' +
-//     '?response_type=code' +
-//     '&client_id=' + process.env.CLIENT_ID +
-//     (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
-//     '&redirect_uri=' + encodeURIComponent(process.env.REDIRECT_URL));
-// });
-
-// // Spotify sends a GET request back to this REDIRECT_URL we specified with a grant code in the url query  
-// // We will send this code back to Spotify to get an access token
-// app.get('/spotify/callback', async function(req, res) {
-//   const {code} = req.query
-//   console.log({code})
-  
-  
-//   const accessToken = await getAccessToken(code) // getAccessToken method is defined at the bottom of the file
-//   console.log({accessToken})
-//   // redirect to homepage with the access token in the query params
-//   res.redirect("/" + '?access_token=' + accessToken)
-// });
-
-// // Start the server! listen for requests :)
-// const listener = app.listen(process.env.PORT, () => {
-//   console.log("Your app is listening on port " + listener.address().port);
-// });
-
-
-// // This is a function for making a POST request to Spotify to get an access token with a given code
-// const getAccessToken = async (code) => {
-//   const clientId = process.env.CLIENT_ID
-//   const clientSecret = process.env.CLIENT_SECRET
-  
-//   const headers = {
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/x-www-form-urlencoded',
-//       'Authorization': 'Basic ' + (clientId + ":" + clientSecret).toString('base64') // Spotify authorizes this request with a base64 encoded string 'Basic CLIENT_ID:CLIENT_SECRET'
-//     },
-//   };
-  
-//   const data = {
-//     grant_type: 'authorization_code',
-//     code,
-//     redirect_uri: process.env.REDIRECT_URI // REDIRECT_URI here is only used for validation - does not actually redirect. Must match redirect URI from first authorization call
-//   };
-
-//   try {
-//     // build the POST url
-//     const url = 'https://accounts.spotify.com/api/token' +
-//       '?grant_type=authorization_code' + 
-//       '&redirect_uri='+ process.env.REDIRECT_URI +
-//       '&code=' + code
-//     // use axios to make a post request to the Spotify API with the code to exchange for an access token 
-//     const response = await axios.post(url, {}, { headers });
-//     console.log(response.data.access_token);
-//     return response.data.access_token;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };

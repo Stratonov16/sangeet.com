@@ -1,51 +1,11 @@
 dependencies:
   axios: 0.21.1
+  cookie-parser: 1.4.5
+  cors: 2.8.5
   express: 4.17.1
   passport: 0.4.1
-  simple-oauth2: 4.2.0
+  querystring: 0.2.1
 packages:
-  /@hapi/boom/9.1.2:
-    dependencies:
-      '@hapi/hoek': 9.2.0
-    dev: false
-    resolution:
-      integrity: sha512-uJEJtiNHzKw80JpngDGBCGAmWjBtzxDCz17A9NO2zCi8LLBlb5Frpq4pXwyN+2JQMod4pKz5BALwyneCgDg89Q==
-  /@hapi/bourne/2.0.0:
-    dev: false
-    resolution:
-      integrity: sha512-WEezM1FWztfbzqIUbsDzFRVMxSoLy3HugVcux6KDDtTqzPsLE8NDRHfXvev66aH1i2oOKKar3/XDjbvh/OUBdg==
-  /@hapi/hoek/9.2.0:
-    dev: false
-    resolution:
-      integrity: sha512-sqKVVVOe5ivCaXDWivIJYVSaEgdQK9ul7a4Kity5Iw7u9+wBAPbX1RMSnLLmp7O4Vzj0WOWwMAJsTL00xwaNug==
-  /@hapi/topo/5.0.0:
-    dependencies:
-      '@hapi/hoek': 9.2.0
-    dev: false
-    resolution:
-      integrity: sha512-tFJlT47db0kMqVm3H4nQYgn6Pwg10GTZHb1pwmSiv1K4ks6drQOtfEF5ZnPjkvC+y4/bUPHK+bc87QvLcL+WMw==
-  /@hapi/wreck/17.1.0:
-    dependencies:
-      '@hapi/boom': 9.1.2
-      '@hapi/bourne': 2.0.0
-      '@hapi/hoek': 9.2.0
-    dev: false
-    resolution:
-      integrity: sha512-nx6sFyfqOpJ+EFrHX+XWwJAxs3ju4iHdbB/bwR8yTNZOiYmuhA8eCe7lYPtYmb4j7vyK/SlbaQsmTtUrMvPEBw==
-  /@sideway/address/4.1.2:
-    dependencies:
-      '@hapi/hoek': 9.2.0
-    dev: false
-    resolution:
-      integrity: sha512-idTz8ibqWFrPU8kMirL0CoPH/A29XOzzAzpyN3zQ4kAWnzmNfFmRaoMNN6VI8ske5M73HZyhIaW4OuSFIdM4oA==
-  /@sideway/formula/3.0.0:
-    dev: false
-    resolution:
-      integrity: sha512-vHe7wZ4NOXVfkoRb8T5otiENVlT7a3IAiw7H5M2+GO+9CDgcVUUsX1zalAztCmwyOr2RUTGJdgB+ZvSVqmdHmg==
-  /@sideway/pinpoint/2.0.0:
-    dev: false
-    resolution:
-      integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
   /accepts/1.3.7:
     dependencies:
       mime-types: 2.1.30
@@ -102,6 +62,15 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA==
+  /cookie-parser/1.4.5:
+    dependencies:
+      cookie: 0.4.0
+      cookie-signature: 1.0.6
+    dev: false
+    engines:
+      node: '>= 0.8.0'
+    resolution:
+      integrity: sha512-f13bPUj/gG/5mDr+xLmSxxDsB9DQiTIfhJS/sqjrmfAWiAN+x2O4i/XguTL9yDZ+/IFDanJ+5x7hC4CXT9Tdzw==
   /cookie-signature/1.0.6:
     dev: false
     resolution:
@@ -112,20 +81,21 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-+Hp8fLp57wnUSt0tY0tHEXh4voZRDnoIrZPqlo3DPiI4y9lwg/jqx+1Om94/W6ZaPDOUbnjOt/99w66zk+l1Xg==
+  /cors/2.8.5:
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
+    dev: false
+    engines:
+      node: '>= 0.10'
+    resolution:
+      integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
   /debug/2.6.9:
     dependencies:
       ms: 2.0.0
     dev: false
     resolution:
       integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
-  /debug/4.3.1:
-    dependencies:
-      ms: 2.1.2
-    dev: false
-    engines:
-      node: '>=6.0'
-    resolution:
-      integrity: sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
   /depd/1.1.2:
     dev: false
     engines:
@@ -271,16 +241,6 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==
-  /joi/17.4.0:
-    dependencies:
-      '@hapi/hoek': 9.2.0
-      '@hapi/topo': 5.0.0
-      '@sideway/address': 4.1.2
-      '@sideway/formula': 3.0.0
-      '@sideway/pinpoint': 2.0.0
-    dev: false
-    resolution:
-      integrity: sha512-F4WiW2xaV6wc1jxete70Rw4V/VuMd6IN+a5ilZsxG4uYtUXWu2kq9W5P2dz30e7Gmw8RCbY/u/uk+dMPma9tAg==
   /media-typer/0.3.0:
     dev: false
     engines:
@@ -326,16 +286,18 @@ packages:
     dev: false
     resolution:
       integrity: sha512-tgp+dl5cGk28utYktBsrFqA7HKgrhgPsg6Z/EfhWI4gl1Hwq8B/GmY/0oXZ6nF8hDVesS/FpnYaD/kOWhYQvyg==
-  /ms/2.1.2:
-    dev: false
-    resolution:
-      integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
   /negotiator/0.6.2:
     dev: false
     engines:
       node: '>= 0.6'
     resolution:
       integrity: sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
+  /object-assign/4.1.1:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -388,6 +350,12 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+  /querystring/0.2.1:
+    dev: false
+    engines:
+      node: '>=0.4.x'
+    resolution:
+      integrity: sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==
   /range-parser/1.2.1:
     dev: false
     engines:
@@ -448,15 +416,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-JvdAWfbXeIGaZ9cILp38HntZSFSo3mWg6xGcJJsd+d4aRMOqauag1C63dJfDw7OaMYwEbHMOxEZ1lqVRYP2OAw==
-  /simple-oauth2/4.2.0:
-    dependencies:
-      '@hapi/hoek': 9.2.0
-      '@hapi/wreck': 17.1.0
-      debug: 4.3.1
-      joi: 17.4.0
-    dev: false
-    resolution:
-      integrity: sha512-AV62tGdq9JfLd/uveKpeNtQl+VVm89a35QKlwGuvisYIjCoz2ZmTGRGuSIGiYr+QUhSKJ5kYN1jq2BBa/ac/GQ==
   /statuses/1.5.0:
     dev: false
     engines:
@@ -501,6 +460,8 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   axios: ^0.21.1
+  cookie-parser: ^1.4.5
+  cors: ^2.8.5
   express: 4.17.1
   passport: ^0.4.1
-  simple-oauth2: 4.2.0
+  querystring: ^0.2.1
