@@ -26,18 +26,19 @@ app.get("/", (req, res) => {
 });
 
 app.post("/recommendations", async (req, res) => {
-  // TODO
-  let accessToken
-  // first, get access token from Spotify 
+  let accessToken;
+  
+  // first, try to get access token from Spotify 
   try {
     accessToken = await getAccessToken()
   } catch(err) {
-    // TODO: res with error 
+    // if failed, send back a failed response
     console.error(err.message)
-    res.send(err)
-  }
+    res.status(500).send({ status: "error", message: "Internal Server Error"})
+  }  
   
-  console.log({accessToken})
+  // otherwise, start workflow
+  
   
 });
 
