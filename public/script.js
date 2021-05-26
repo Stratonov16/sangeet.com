@@ -4,7 +4,8 @@
 // any console.log in this file will appear the browser console
 console.log("Hello from script.js!")
 
-// get axios from the window object. We added axios to the window from a CDN link in index.html
+// get Hadnlebars and axios from the window object. We added these to the window from a CDN link in index.html
+const handlebars = window.Handlebars
 const axios = window.axios
 
 // define variables that reference elements on our page
