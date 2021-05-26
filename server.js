@@ -16,8 +16,7 @@ if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
   console.error("ERROR: Missing one or more critical Spotify environment variables. Check .env file");
 }
 
-// set up the app to parse request bodies
-app.use(express.urlencoded({ extended: true }));
+// set up the app to parse JSON request bodies
 app.use(express.json());
 
 // make all the files in 'public' available
@@ -55,7 +54,7 @@ app.post("/recommendations", async (req, res) => {
   
   try {
     const result = await searchTracks(accessToken, { track: 'dancing queen', artist: 'abba'})
-    const tracks = result.tracks
+    const { tracks } = result
     
     // if no songs returned in search, send a 404 response
     if(!tracks || !tracks.items || !tracks.items.length ) {
@@ -72,16 +71,15 @@ app.post("/recommendations", async (req, res) => {
   // 3. get song recommendations
   try {
     const result = await getRecommendations(accessToken, { trackId })
-    const recommendations = result
-    console.log({recommendations})
+    const { tracks } = result
 
     // if no songs returned in search, send a 404 response
-    if(!recommendations || !recommendations.tracks || !recommendations.tracks.length ) {
+    if(!tracks || !tracks.length ) {
       res.status(404).send({ message: "No recommendations found." })
     }
     
-    // Success! Send recommendations back to client
-    res.send({ recommendations })
+    // Success! Send track recommendations back to client
+    res.send({ tracks })
   } catch(err) {
     console.error(err.message)
     res.status(500).send({ status: "error", message: "Internal Server Error" })
