@@ -16,6 +16,9 @@ if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
   console.error("ERROR: Missing one or more critical Spotify environment variables. Check .env file");
 }
 
+// set up the app to parse request bodies
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
@@ -31,14 +34,13 @@ app.post("/recommendations", async (req, res) => {
     res.status(400).send({ status: "error", message: "Bad Request - must send a JSON body with track and artist" })
   }
   
-  console.log(req.body)
   const { track, artist } = req.body
   
   if(!track || !artist) {
     res.status(400).send({ status: "error", message: "Bad Request - must past a track and artist" })
   }
   
-  // first, try to get access token from Spotify 
+  // 1. try to get access token from Spotify 
   let accessToken;
   
   try {
@@ -47,11 +49,8 @@ app.post("/recommendations", async (req, res) => {
     console.error(err.message)
     res.status(500).send({ status: "error", message: "Internal Server Error"})
   }  
-  console.log({accessToken})
   
-  // otherwise, start workflow
-  
-  // 1. get track id from search
+  // 2. get track id from search
   
   let trackId;
   
@@ -70,7 +69,7 @@ app.post("/recommendations", async (req, res) => {
     res.status(500).send({ status: "error", message: "Error when searching tracks" })
   }
   
-  // 2. get song recommendations
+  // 3. get song recommendations
   try {
     const recommendations = await getRecommendations(accessToken, { trackId })
     
