@@ -27,13 +27,22 @@ app.get("/", (req, res) => {
 });
 
 app.post("/recommendations", async (req, res) => {
-  let accessToken;
+  if(!req.body) {
+    res.status(400).send({ status: "error", message: "Bad Request - must send a JSON body with track and artist" })
+  }
+  
+  const { track, artist } = req.body
+  
+  if(!track || !artist) {
+    res.status(400).send({ status: "error", message: "Bad Request - must past a track and artist" })
+  }
   
   // first, try to get access token from Spotify 
+  let accessToken;
+  
   try {
     accessToken = await getAccessToken()
   } catch(err) {
-     // if failed, log error to server and return a status 500 failed response
     console.error(err.message)
     res.status(500).send({ status: "error", message: "Internal Server Error"})
   }  
@@ -42,7 +51,9 @@ app.post("/recommendations", async (req, res) => {
   // otherwise, start workflow
   
   // 1. get track id from search
+  
   let trackId;
+  
   try {
     const tracks = await searchTracks(accessToken, { track: 'dancing queen', artist: 'abba'})
     
