@@ -1,9 +1,6 @@
 const axios = require("axios")
 const qs = require("qs")
 
-// // Spotify auth scopes permitted for this application
-// const AUTH_SCOPE = "user-read-private user-read-email";
-
 const SPOTIFY_ACCESS_TOKEN_URL = "https://accounts.spotify.com/api/token"
 
 // This function uses Client Credentials to obtain an access token from Spotify
@@ -28,8 +25,7 @@ const getAccessToken = async () => {
   };
 
   // Make a post request with axios to Spotify to get access token with client credentials
-  const accessToken = await axios(authOptions)
-  return accessToken
+  return axios(authOptions).then((res) => res.data.access_token )
 }
 
 // export the functions so we can use them in server.js

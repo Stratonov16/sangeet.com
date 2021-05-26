@@ -33,30 +33,33 @@ app.post("/recommendations", async (req, res) => {
   try {
     accessToken = await getAccessToken()
   } catch(err) {
-    // if failed, send back a failed response
+     // if failed, log error to server and return a status 500 failed response
     console.error(err.message)
     res.status(500).send({ status: "error", message: "Internal Server Error"})
   }  
   console.log({accessToken})
+  
   // otherwise, start workflow
   
   // 1. get track id from search
   let trackId;
   try {
-    const searchResponse = await searchTracks(accessToken, { track: 'dancing queen', artist: 'abba'})
-    if(!searchResponse.tracks || !searchResponse.tracks.items.length ) {
+    const tracks = await searchTracks(accessToken, { track: 'dancing queen', artist: 'abba'})
+    
+    // if no songs returned in search, send a 404 response
+    if(!tracks || !tracks.items || !tracks.items.length ) {
       res.status(404).send({ message: "Song not found." })
     }
     
     // save the first search result's trackId to a cariable
-    trackId = searchResponse.tracks.items[0].id
+    trackId = tracks.items[0].id
   } catch(e) {
     res.status(500).send({ status: "error", message: "Error when searching tracks" })
   }
   
-
-  
   // 2. get song recommendations
+  
+  
 });
 
 

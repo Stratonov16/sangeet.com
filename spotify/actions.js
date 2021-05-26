@@ -14,9 +14,7 @@ const searchTracks = (accessToken, { track, artist }) => {
   };
 
   return axios(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-    })
+    .then((res) => res.data.tracks)
 }
 
 /// uses Spotify's Search API to search tracks by track name and artist
@@ -30,9 +28,7 @@ const getRecommendations = (accessToken, { trackId }) => {
   };
 
   return axios(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-    })
+    .then((res) => res.data);
 }
 
 module.exports = { searchTracks }
