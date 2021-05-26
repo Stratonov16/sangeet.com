@@ -51,7 +51,6 @@ app.post("/recommendations", async (req, res) => {
   }  
   
   // 2. get track id from search
-  
   let trackId;
   
   try {
@@ -78,11 +77,8 @@ app.post("/recommendations", async (req, res) => {
       res.status(404).send({ message: "No recommendations found." })
     }
     
-    // get the top three recommendations
-    const topThree = recommendations.tracks.slice(0,3)
-    
     // Success! Send recommendations back to client
-    res.send({ recommendations: topThree })
+    res.send({ recommendations })
   } catch(err) {
     console.error(err.message)
     res.status(500).send({ status: "error", message: "Internal Server Error" })
