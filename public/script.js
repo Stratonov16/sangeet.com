@@ -28,7 +28,6 @@ const submitForm = async (event) => {
   
   // get top 3 recommendations
   const topThreeRecs = recommendations.slice(0,3)
-  console.log(topThreeRecs)
   
   const template = handlebars.compile(templateRaw)
   const recommendationsHtml = template({ track, topThreeRecs })
