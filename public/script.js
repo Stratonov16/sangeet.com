@@ -34,7 +34,7 @@ const submitForm = async (event) => {
   const recommendationsHtml = template({ track, topThreeRecs })
   
   // set the recommendation output's inner html do the resolved temple
-  output.innerHtml = recommendationsHtml
+  output.innerHTML = recommendationsHtml
 }
 
 const templateRaw = `
