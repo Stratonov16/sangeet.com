@@ -72,7 +72,8 @@ app.post("/recommendations", async (req, res) => {
   // 3. get song recommendations
   try {
     const result = await getRecommendations(accessToken, { trackId })
-    const recommendations = result.recommendations
+    const recommendations = result
+    console.log({recommendations})
 
     // if no songs returned in search, send a 404 response
     if(!recommendations || !recommendations.tracks || !recommendations.tracks.length ) {

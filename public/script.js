@@ -22,9 +22,9 @@ const submitForm = async (event) => {
   
   // send 
   const result = await axios.post("/recommendations", { track, artist })
-  const recommendations = result.data
+  // const recommendations = result.data
   
-  console.log(recommendations)
+  console.log(result)
   
 }
 
