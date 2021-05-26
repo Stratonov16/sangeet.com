@@ -54,7 +54,8 @@ app.post("/recommendations", async (req, res) => {
   let trackId;
   
   try {
-    const tracks = await searchTracks(accessToken, { track: 'dancing queen', artist: 'abba'})
+    const result = await searchTracks(accessToken, { track: 'dancing queen', artist: 'abba'})
+    const tracks = result.tracks
     
     // if no songs returned in search, send a 404 response
     if(!tracks || !tracks.items || !tracks.items.length ) {
@@ -70,8 +71,9 @@ app.post("/recommendations", async (req, res) => {
   
   // 3. get song recommendations
   try {
-    const recommendations = await getRecommendations(accessToken, { trackId })
-    
+    const result = await getRecommendations(accessToken, { trackId })
+    const recommendations = result.recommendations
+
     // if no songs returned in search, send a 404 response
     if(!recommendations || !recommendations.tracks || !recommendations.tracks.length ) {
       res.status(404).send({ message: "No recommendations found." })
