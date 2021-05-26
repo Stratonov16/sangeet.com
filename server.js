@@ -31,6 +31,7 @@ app.post("/recommendations", async (req, res) => {
     res.status(400).send({ status: "error", message: "Bad Request - must send a JSON body with track and artist" })
   }
   
+  console.log(req)
   const { track, artist } = req.body
   
   if(!track || !artist) {
