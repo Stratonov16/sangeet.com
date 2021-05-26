@@ -21,12 +21,27 @@ const submitForm = async (event) => {
   const track = elements.track.value
   const artist = elements.artist.value
   
-  // send 
+  // send a POST request to the backend /recommendations path to get song recommendations
   const result = await axios.post("/recommendations", { track, artist })
-  // const recommendations = result.data
+  const recommendations = result.data.tracks
   
+  // get top 3 recommendations
+  const topThreeRecs = recommendations.slice(0,3)
   console.log(result)
+  
+  const template = handlebars.compile(templateRaw)
+  const recommendationsHtml = template({ track, topThreeRecs })
+  
+  console.log(recommendationsHtml)
+  
   
 }
 
-
+const templateRaw = `
+<p>If you like "{{track}}", you'll love:</p>
+<ul>
+  {{#each topThreeRecs}}
+  <li>{{name}} - <a href="{{external_urls.spotify}}">Play</a></li>
+  {{/each}}
+</ul>
+`
