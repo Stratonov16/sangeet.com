@@ -41,7 +41,7 @@ const templateRaw = `
 <p>If you like "{{track}}", you'll love:</p>
 <ul>
   {{#each topThreeRecs}}
-  <li>{{name}} - <a href="{{external_urls.spotify}}">Play</a></li>
+  <li>{{name}} - <a href="{{external_urls.spotify}}" target="_blank">Play</a></li>
   {{/each}}
 </ul>
 `
