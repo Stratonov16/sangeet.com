@@ -20,8 +20,10 @@
   <body>
     <main id="main-content">
       <h1>Spotify Song Recommender</h1>
-      <form>
-        
+      <form id="search-form" onsubmit="submitForm">
+        <input type="text" name="track" placeholder="song name" required />
+        <input type="text" name="artist" placeholder="song name" required />
+        <input type="submit" value="Get recommendations..." />
       </form>
     </main>
      <div>

@@ -31,4 +31,4 @@ const getRecommendations = (accessToken, { trackId }) => {
     .then((res) => res.data);
 }
 
-module.exports = { searchTracks }
+module.exports = { searchTracks, getRecommendations }

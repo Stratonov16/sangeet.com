@@ -6,7 +6,7 @@
 const express = require("express");
 const axios = require("axios");
 const { getAccessToken } = require("./spotify/auth");
-const { searchTracks } = require("./spotify/actions");
+const { searchTracks, getRecommendations } = require("./spotify/actions");
 
 // initialize an instance of express called 'app' 
 const app = express();
@@ -53,13 +53,29 @@ app.post("/recommendations", async (req, res) => {
     
     // save the first search result's trackId to a cariable
     trackId = tracks.items[0].id
-  } catch(e) {
+  } catch(err) {
+    console.error(err.message)
     res.status(500).send({ status: "error", message: "Error when searching tracks" })
   }
   
   // 2. get song recommendations
-  
-  
+  try {
+    const recommendations = await getRecommendations(accessToken, { trackId })
+    
+    // if no songs returned in search, send a 404 response
+    if(!recommendations || !recommendations.tracks || !recommendations.tracks.length ) {
+      res.status(404).send({ message: "No recommendations found." })
+    }
+    
+    // get the top three recommendations
+    const topThree = recommendations.tracks.slice(0,3)
+    
+    // Success! Send recommendations back to client
+    res.send({ recommendations: topThree })
+  } catch(err) {
+    console.error(err.message)
+    res.status(500).send({ status: "error", message: "Internal Server Error" })
+  }
 });
 
 
