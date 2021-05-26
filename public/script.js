@@ -8,8 +8,9 @@ console.log("Hello from script.js!")
 const handlebars = window.Handlebars
 const axios = window.axios
 
-// define variables that reference elements on our page
-const mainContent = document.getElementById("main-content");
+// get the "recommendation-output" div from the DOM 
+const output = document.getElementById("recommendation-output");
+console.log(output)
 
 // a helper function that handles form submission
 const submitForm = async (event) => {
@@ -27,14 +28,13 @@ const submitForm = async (event) => {
   
   // get top 3 recommendations
   const topThreeRecs = recommendations.slice(0,3)
-  console.log(result)
+  console.log(topThreeRecs)
   
   const template = handlebars.compile(templateRaw)
   const recommendationsHtml = template({ track, topThreeRecs })
   
-  console.log(recommendationsHtml)
-  
-  
+  // set the recommendation output's inner html do the resolved temple
+  output.innerHtml = recommendationsHtml
 }
 
 const templateRaw = `
