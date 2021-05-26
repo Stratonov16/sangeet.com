@@ -43,13 +43,18 @@ app.post("/recommendations", async (req, res) => {
   // 1. get track id from search
   let trackId;
   try {
-    const tracks = await searchTracks(accessToken, { track: 'dancing queen', artist: 'abba'})
+    const searchResponse = await searchTracks(accessToken, { track: 'dancing queen', artist: 'abba'})
+    if(!searchResponse.tracks || !searchResponse.tracks.items.length ) {
+      res.status(404).send({ message: "Song not found." })
+    }
+    
+    // save the first search result's trackId to a cariable
+    trackId = searchResponse.tracks.items[0].id
   } catch(e) {
-    res.status(500).send({})
+    res.status(500).send({ status: "error", message: "Error when searching tracks" })
   }
   
-  
-  console.log({tracks})
+
   
   // 2. get song recommendations
 });
