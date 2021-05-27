@@ -8,7 +8,7 @@ const axios = require("axios");
 const { getAccessToken } = require("./spotify/auth");
 const { searchTracks, getRecommendations } = require("./spotify/actions");
 
-// initialize an instance of express called 'app' 
+// initialize an express instance called 'app' 
 const app = express();
 
 // Log an error message if any of the secret values needed for this app are missing

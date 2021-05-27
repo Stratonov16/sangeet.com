@@ -8,32 +8,50 @@ console.log("Hello from script.js!")
 const handlebars = window.Handlebars
 const axios = window.axios
 
-// get the "recommendation-output" div from the DOM 
+// get elements from the DOM 
 const output = document.getElementById("recommendation-output");
-console.log(output)
+const button = document.getElementById("submitButton");
 
-// a helper function that handles form submission
+// helper function that gets called on form submission
 const submitForm = async (event) => {
-  // This line prevents the page from reshing on form submit. By default, a form submission event refreshes the page
-  event.preventDefault()  
-  
-  // get form values
-  const { elements } = event.target
-  const track = elements.track.value
-  const artist = elements.artist.value
-  
-  // send a POST request to the backend /recommendations path to get song recommendations
-  const result = await axios.post("/recommendations", { track, artist })
-  const recommendations = result.data.tracks
-  
-  // get top 3 recommendations
-  const topThreeRecs = recommendations.slice(0,3)
-  
-  const template = handlebars.compile(templateRaw)
-  const recommendationsHtml = template({ track, topThreeRecs })
-  
-  // set the recommendation output's inner html do the resolved temple
-  output.innerHTML = recommendationsHtml
+  try {
+    // This line prevents the page from reshing on form submit. By default, a form submission event refreshes the page
+    event.preventDefault()  
+    disableButton()
+    // get form values
+    const { elements } = event.target
+    const track = elements.track.value
+    const artist = elements.artist.value
+
+    // send a POST request to the backend /recommendations path to get song recommendations
+    const result = await axios.post("/recommendations", { track, artist })
+    const recommendations = result.data.tracks
+
+    // get top 3 recommendations
+    const topThreeRecs = recommendations.slice(0,3)
+
+    const template = handlebars.compile(templateRaw)
+    const recommendationsHtml = template({ track, topThreeRecs })
+
+    // set the recommendation output's inner html do the resolved temple
+    output.innerHTML = recommendationsHtml
+  } catch(err) {
+    // show a pop up error message if something goes wrong
+    alert("Something went wrong. " + err.message)
+  } finally {
+    // regardless of outcome, re-enable button
+    enableButton()
+  }
+}
+
+const disableButton = () => {
+  button.value = "Searching..."
+  button.disabled = true
+}
+
+const enableButton = () => {
+  button.value = "Get recommendations"
+  button.disabled = false
 }
 
 const templateRaw = `
