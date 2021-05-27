@@ -61,7 +61,7 @@ app.post("/recommendations", async (req, res) => {
       res.status(404).send({ message: "Song not found." })
     }
     
-    // save the first search result's trackId to a cariable
+    // save the first search result's trackId to a variable
     trackId = tracks.items[0].id
   } catch(err) {
     console.error(err.message)
