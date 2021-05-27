@@ -4,7 +4,7 @@
 // any console.log in this file will appear the browser console
 console.log("Hello from script.js!")
 
-// get Hadnlebars and axios from the window object. We added these to the window from a CDN link in index.html
+// get Handlebars and axios from the window object. We added these to the window from a CDN link in index.html
 const handlebars = window.Handlebars
 const axios = window.axios
 
@@ -12,13 +12,13 @@ const axios = window.axios
 const output = document.getElementById("recommendation-output");
 const button = document.getElementById("submitButton");
 
-// helper function that gets called on form submission
+// this helper function that gets called on form submission
 const submitForm = async (event) => {
   try {
     // This line prevents the page from reshing on form submit. By default, a form submission event refreshes the page
     event.preventDefault()  
     disableButton()
-    // get form values
+    // get form values 
     const { elements } = event.target
     const track = elements.track.value
     const artist = elements.artist.value

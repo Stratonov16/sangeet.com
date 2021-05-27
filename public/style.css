@@ -52,7 +52,7 @@ form input[type=submit] {
 }
 
 form input[type=submit]:hover {
-  background-color: lavender;
+  opacity: 0.9;
 }
 
 footer {
