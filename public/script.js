@@ -1,5 +1,4 @@
 // client-side js, loaded by index.html
-// run by the browser each time the page is loaded
 
 // any console.log in this file will appear the browser console
 console.log("Hello from script.js!")
@@ -18,6 +17,7 @@ const submitForm = async (event) => {
     // This line prevents the page from reshing on form submit. By default, a form submission event refreshes the page
     event.preventDefault()  
     disableButton()
+    
     // get form values 
     const { elements } = event.target
     const track = elements.track.value
