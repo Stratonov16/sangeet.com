@@ -7,9 +7,9 @@ A Node.js/Express server that serves a webpage, its resources, and some data
 
 On the front-end,
 
-- Edit `views/index.html` to change the content of the webpage
+- Edit `public/index.html` to change the content of the webpage
 - `public/client.js` is the javacript that runs when you load the webpage
-- `public/style.css` is the styles for `views/index.html`
+- `public/style.css` is the styles for `public/index.html`
 - Drag in `assets`, like images or music, to add them to your project
 
 On the back-end,
