@@ -2,7 +2,7 @@
 // where your node app starts
 
 // we've started you off with Express (https://expressjs.com/) and axios (https://www.npmjs.com/package/axios)
-// but feel free to use whatever libraries or frameworks you'd like through `package.json`.
+// you can always use whatever libraries or frameworks you'd like through `package.json` > "Add package".
 const express = require("express");
 const axios = require("axios");
 
