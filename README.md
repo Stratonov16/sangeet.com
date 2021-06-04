@@ -1,6 +1,6 @@
-# hello-express
+# Postman Express Starter
 
-A server that serves a webpage, its resources, and some data
+A Node.js/Express server that serves a webpage, its resources, and some data
 
 
 ## Your Project

@@ -1,15 +1,19 @@
+// server.js
+// where your node app starts
+
+// we've started you off with Express (https://expressjs.com/)
+// you can always use whatever libraries or frameworks you'd like through `package.json` > "Add package".
 const express = require("express");
-const axios = require("axios");
 
-// initialize an express instance called 'app' 
-const app = express();
+const app = express(); // initialize an express instance called 'app' 
 
-// set up the app to parse JSON request bodies
-app.use(express.json());
+app.use(express.json()); // set up the app to parse JSON request bodies
 
+// make all the files in 'public' available
+// https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 
-// return the index.html file when a GET request is made to the root path "/"
+// return the public/index.html file when a GET request is made to the root path "/"
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
