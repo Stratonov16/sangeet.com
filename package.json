@@ -10,8 +10,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "4.17.1",
-    "qs": "^6.10.1"
+    "express": "4.17.1"
   },
   "engines": {
     "node": "12.x"
