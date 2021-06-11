@@ -1,7 +1,8 @@
 # Postman Express Starter
 
-A Node.js/Express server that serves a webpage, its resources, and some data
+A Node.js/Express server that serves a webpage and its resources
 
+Remix this project to start your next app!
 
 ## Your Project
 
