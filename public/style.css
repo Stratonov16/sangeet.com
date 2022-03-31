@@ -20,7 +20,14 @@ body {
 
 h1 {
   font-style: italic;
+  font-family: 'Righteous';
   color: var(--primary-color);
+  max-width: calc(100% - 5rem);
+  line-height: 1.1;
+ 
+}
+h5 {
+  color: #Fcc201;
   max-width: calc(100% - 5rem);
   line-height: 1.1;
  
