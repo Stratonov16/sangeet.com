@@ -41,6 +41,7 @@ app.post("/recommendations", async(req, res) => {
   let accessToken;
   try {
     accessToken = await getAccessToken();
+    console.log("authetication successful");
   } catch (err) {
     console.error(err.message);
     return res
@@ -56,7 +57,7 @@ app.post("/recommendations", async(req, res) => {
   try {
     const result = await searchTracks(http, { track, artist });
     const { tracks } = result;
-
+    console.log(track);
     if (!tracks || !tracks.items || !tracks.items.length) {
       return res
         .status(404)
@@ -64,6 +65,7 @@ app.post("/recommendations", async(req, res) => {
     }
 
     trackId = tracks.items[0].id;
+    console.log(trackId);
   } catch (err) {
     console.error(err.message);
     return res

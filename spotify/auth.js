@@ -10,11 +10,11 @@ const getAccessToken = async () => {
   
   const encodedToken = Buffer.from(unencodedToken).toString("base64");
 
-  console.log(`Encoded token in auth.js ${encodedToken}`);
+  // console.log(`Encoded token in auth.js ${encodedToken}`);
 
   const data = qs.stringify({ grant_type: "client_credentials" });
   
-  console.log(`Data in auth.js ${data}`);
+    console.log(`Data in auth.js ${data}`);
 
   const authOptions = {
     method: "post",

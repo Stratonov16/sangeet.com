@@ -1,5 +1,5 @@
 dependencies:
-  axios: 0.25.0
+  axios: 0.26.1
   express: 4.17.3
   qs: 6.10.3
 packages:
@@ -16,12 +16,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
-  /axios/0.25.0:
+  /axios/0.26.1:
     dependencies:
       follow-redirects: 1.14.9
     dev: false
     resolution:
-      integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==
+      integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==
   /body-parser/1.19.2:
     dependencies:
       bytes: 3.1.2
@@ -444,6 +444,6 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
-  axios: ^0.25.0
-  express: ^4.17.2
+  axios: ^0.26.1
+  express: ^4.17.3
   qs: ^6.10.3
