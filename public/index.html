@@ -1,0 +1,54 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A song recommendation app">
+
+    <title>Postman Express Starter</title>
+
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    
+    <!-- import the webpage's stylesheet (style.css) -->
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body bgcolor= #121212>
+    <main id="main-content">
+      <h1 align = "center">Sangeet.com
+      </h1>
+      <h5 align ="center">
+        
+        𝄞 Discover new tracks 𝅘𝅥𝅯
+      </h5>
+     
+      
+      
+<!--  search box-->
+      <div class="form-group">
+                          
+      <form  id ="search-form" onsubmit="submitForm(event)">
+        <input class="form-style" type = "text" name ="track" placeholder="Enter your favourite track" required/>
+        <input class="form-style" type = "text" name ="artist" placeholder="Enter your favourite artist" required/>
+        <input class="btn mt-4" type = "submit" id ="submitButton" value="Get recommendations" />
+      </form>
+      </div>
+      
+      
+<!--       <img src="https://thumbs.dreamstime.com/b/music-icon-black-background-graphic-web-design-modern-simple-vector-sign-internet-concept-trendy-symbol-website-button-139056637.jpg" width = "40px"> -->
+    </main>
+
+    <!-- start Glitch promo stuff :)  -->
+    <footer style="color:white">Made By <a href="https://stratonov16.github.io/about-me/">Nikhil</a> With love!</footer>
+    <div class="glitchButton" style="position:fixed;top:2em;right:20px;"></div>
+    <!-- Fancy Glitch menu button  -->
+    <script src="https://button.glitch.me/button.js" defer></script>
+    <!-- end Glitch promo stuff :)  -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- import client-side Javascript file  -->
+    <script src="./script.js" defer></script>
+  </body>
+</html>
