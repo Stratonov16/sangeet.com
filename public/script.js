@@ -25,21 +25,21 @@ const submitForm = async (event) => {
   }
 
   const recommendations = result.data.tracks;
-  const topThreeRecs = recommendations.slice(0, 3);
+  const topRecs = recommendations.slice(0, 10);
 
-  console.log(topThreeRecs);
+  console.log(topRecs);
 
   const template = handlebars.compile(templateRaw);
-  const recommendationsHtml = template({ track, topThreeRecs });
+  const recommendationsHtml = template({ track, topRecs });
   output.innerHTML = recommendationsHtml;
 };
 
 const templateRaw = `
-<h3>Discover new tunes!</h3>
-<p>If you like "{{track}}", you'll love:</p>
+<p>Discover new tunes!<p>
+<h6>If you like "{{track}}", you'll love:</h6>
 <ul>
-  {{#each topThreeRecs}}
-  <li>{{name}} - <a href="{{external_urls.spotify}}">Play</a></li>
+  {{#each topRecs}}
+  <li><h6>{{name}} - <a href="{{external_urls.spotify}}">Play</a></h6></li>
   {{/each}}
 </ul>
 `;
