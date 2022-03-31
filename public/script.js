@@ -5,5 +5,8 @@
 
 
 const submitForm = (event)=>{
-  console.log("jajn");
+  const { elements} = event.target
+  const track = elements.track.value;
+  console.log(event);
+  
 };
