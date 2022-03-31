@@ -2,9 +2,7 @@
 /* Customize to your liking! */
 
 /* Define variables*/
-:root {
-  --primary-color: #fafafa;
-}
+@import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
 
 * {
 margin:auto;
@@ -20,10 +18,12 @@ body {
 
 h1 {
   font-style: italic;
-  font-family: 'Righteous';
-  color: var(--primary-color);
-  max-width: calc(100% - 5rem);
-  line-height: 1.1;
+  font-family: 'Rock 3D', cursive;
+  font-family: 'Yatra One', cursive;
+  color: white;
+  max-width: calc(200% );
+  line-height: 2;
+  font-size:50px;
  
 }
 h5 {
