@@ -6,6 +6,13 @@
 const express = require("express");
 
 const app = express(); // initialize an express instance called 'app'
+const axios = require("axios");
+const { getAccessToken } = require("./spotify/auth.js");
+const { searchTracks, getRecommendations } = require("./spotify/actions.js");
+
+if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
+  console.error("ERROR: Missing one or more crucial spotify variables.");
+}
 
 app.use(express.json()); // set up the app to parse JSON request bodies
 
@@ -29,13 +36,11 @@ app.post("/recommendations", (req, res) => {
       .status(400)
       .send({ message: "Put both song and artist name for better result" });
   }
-  res.send({ message: "ok" });
-});
 
 
   let accessToken;
   try {
-    accessToken = await getAccessToken();
+    accessToken = getAccessToken();
   } catch (err) {
     console.error(err.message);
     return res
@@ -49,7 +54,7 @@ app.post("/recommendations", (req, res) => {
 
   let trackId;
   try {
-    const result = await searchTracks(http, { track, artist });
+    const result = searchTracks(http, { track, artist });
     const { tracks } = result;
 
     if (!tracks || !tracks.items || !tracks.items.length) {
@@ -69,7 +74,7 @@ app.post("/recommendations", (req, res) => {
   console.log(trackId);
 
   try {
-    const result = await getRecommendations(http, { trackId })
+    const result =  getRecommendations(http, { trackId })
     const { tracks } = result
 
     // if no songs returned in search, send a 404 response
