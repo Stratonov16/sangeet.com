@@ -5,8 +5,10 @@
 
 
 const submitForm = (event)=>{
+  event.preventDefault();
   const { elements} = event.target
   const track = elements.track.value;
+  const artist = elements.artist.value;
   console.log(event);
   
 };

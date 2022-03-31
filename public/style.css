@@ -7,6 +7,7 @@
 }
 
 * {
+margin:auto;
   box-sizing: border-box;
 }
 
@@ -22,10 +23,10 @@ h1 {
   color: var(--primary-color);
   max-width: calc(100% - 5rem);
   line-height: 1.1;
+ 
 }
 
 form {
-
   display: grid;
   grid-gap: 1em;
   padding: 1em;
@@ -133,4 +134,28 @@ footer {
   margin-top: 3em;
   padding-top: 1.5em;
   border-top: 1px solid lightgrey;
+}
+
+a:link {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color:white;
+  background-color: transparent;
+  text-decoration: none;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
 }
