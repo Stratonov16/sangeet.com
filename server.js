@@ -27,12 +27,69 @@ app.post("/recommendations", (req, res) => {
     //if both are not put
     return res
       .status(400)
-      .send({ message: "Put both song and artist for better result" });
+      .send({ message: "Put both song and artist name for better result" });
   }
   res.send({ message: "ok" });
 });
 
+
+  let accessToken;
+  try {
+    accessToken = await getAccessToken();
+  } catch (err) {
+    console.error(err.message);
+    return res
+      .status(500)
+      .send({ message: "Something went wrong when fetching access token" });
+  }
+
+  const http = axios.create({
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  let trackId;
+  try {
+    const result = await searchTracks(http, { track, artist });
+    const { tracks } = result;
+
+    if (!tracks || !tracks.items || !tracks.items.length) {
+      return res
+        .status(404)
+        .send({ message: `Song ${track} by ${artist} not found.` });
+    }
+
+    trackId = tracks.items[0].id;
+  } catch (err) {
+    console.error(err.message);
+    return res
+      .status(500)
+      .send({ message: "Something went wrong when searching tracks" });
+  }
+
+  console.log(trackId);
+
+  try {
+    const result = await getRecommendations(http, { trackId })
+    const { tracks } = result
+
+    // if no songs returned in search, send a 404 response
+    if(!tracks || !tracks.length ) {
+      return res.status(404).send({ message: "No recommendations found." })
+    }
+    
+    // Success! Send track recommendations back to client
+    return res.send({ tracks })
+  } catch (err) {
+    console.error(err.message);
+    return res
+      .status(500)
+      .send({ message: "Something went wrong when getting recommendations" });
+  }
+
+  res.send({ message: "OK" });
+});
+
 // start listening on a port provided by Glitch
 app.listen(process.env.PORT, () => {
-  console.log(`Example app listening at port ${process.env.PORT}`);
+  console.log(`My app listening at port ${process.env.PORT}`);
 });
