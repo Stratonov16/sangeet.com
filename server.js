@@ -18,9 +18,16 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 app.post("/recommendations", (req, res)=>{
-  console.log(req.body);
+  if(!req.body){//if proper body is not made then error message
+    return res.status(400).send({message: "Not working bruh, Retry"})
+  
+  const {trac, artist} = req.body;
+  if(!track || !artist){
+      
+    }
   res.send({message:"ok"});
 })
+
 
 // start listening on a port provided by Glitch
 app.listen(process.env.PORT, () => {
