@@ -3,6 +3,8 @@
 
 /* Define variables*/
 @import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
 
 * {
 margin:auto;
@@ -10,26 +12,29 @@ margin:auto;
 }
 
 body {
-  font-family: sans-serif;
-  margin: 2em 1em;
+font-family: 'JetBrains Mono', monospace;
   line-height: 1.5em;
   font-size: 16px;
 }
 
 h1 {
   font-style: italic;
-  font-family: 'Rock 3D', cursive;
+/*   font-family: 'Rock 3D', cursive; */
   font-family: 'Yatra One', cursive;
   color: white;
-  max-width: calc(200% );
+  max-width: calc(100% );
   line-height: 2;
-  font-size:50px;
+  font-size:60px;
  
 }
 h5 {
+  font-family: 'Dancing Script', cursive;
   color: #Fcc201;
+
   max-width: calc(100% - 5rem);
-  line-height: 1.1;
+  line-height: 0.1;
+    font-size:25px;
+
  
 }
 
@@ -37,8 +42,10 @@ form {
   display: grid;
   grid-gap: 1em;
   padding: 1em;
-  max-width: 40ch;
-  border-radius: 10px;
+  padding-top:3em;
+  max-width: 35ch;
+  border-radius: px;
+  
 }
 
 input {
