@@ -24,7 +24,8 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
-app.post("/recommendations", (req, res) => {
+
+app.post("/recommendations", async(req, res) => {
   if (!req.body) {
     //if proper body is not made then error message
     return res.status(400).send({ message: "Not working bruh, Retry" });
@@ -37,10 +38,9 @@ app.post("/recommendations", (req, res) => {
       .send({ message: "Put both song and artist name for better result" });
   }
 
-
   let accessToken;
   try {
-    accessToken = getAccessToken();
+    accessToken = await getAccessToken();
   } catch (err) {
     console.error(err.message);
     return res
@@ -54,7 +54,7 @@ app.post("/recommendations", (req, res) => {
 
   let trackId;
   try {
-    const result = searchTracks(http, { track, artist });
+    const result = await searchTracks(http, { track, artist });
     const { tracks } = result;
 
     if (!tracks || !tracks.items || !tracks.items.length) {
@@ -74,7 +74,7 @@ app.post("/recommendations", (req, res) => {
   console.log(trackId);
 
   try {
-    const result =  getRecommendations(http, { trackId })
+    const result = await getRecommendations(http, { trackId })
     const { tracks } = result
 
     // if no songs returned in search, send a 404 response

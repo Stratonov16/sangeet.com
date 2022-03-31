@@ -11,7 +11,7 @@ const submitForm = async (event)=>{ //to handle network issue while submitting u
   const { elements} = event.target
   const track = elements.track.value;
   const artist = elements.artist.value;
-  //console.log({artist, track});
+  console.log({artist, track});
   let result;
   try {
     result = await axios.post("/recommendations", { track, artist });
