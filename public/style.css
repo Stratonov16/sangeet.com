@@ -137,7 +137,7 @@ footer {
 }
 
 a:link {
-  color: red;
+  color: white;
   background-color: transparent;
   text-decoration: none;
 }
@@ -155,7 +155,7 @@ a:hover {
 }
 
 a:active {
-  color: yellow;
+  color: white;
   background-color: transparent;
   text-decoration: underline;
 }

@@ -17,6 +17,10 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
+app.post("/recommendations", (req, res)=>{
+  console.log(req.body);
+  res.send({message:"ok"});
+})
 
 // start listening on a port provided by Glitch
 app.listen(process.env.PORT, () => {
