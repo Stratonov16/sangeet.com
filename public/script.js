@@ -40,7 +40,7 @@ const templateRaw = `
 <ul>
   {{#each topRecs}}
   <li><h6> <a href="{{external_urls.spotify}}">
-  <img src ="https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/play.jpg?v=1648739746771" width ="20px">
+  <img src ="https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/pixlr-bg-result.png?v=1650800025230" width ="20px">
   {{name}}</a></h6></li>
   {{/each}}
 </ul>
