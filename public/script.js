@@ -15,6 +15,7 @@ const submitForm = async (event) => {
   artist = elements.artist.value;
   currentPage = 0;
   output.innerHTML = ''; // Clear previous recommendations
+  moreButton.style.display = 'none'; // Hide the button before fetching new recommendations
 
   await fetchRecommendations();
 };
