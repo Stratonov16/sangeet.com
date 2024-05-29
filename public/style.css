@@ -32,7 +32,7 @@ h4 {
 
   max-width: calc(100% - 5rem);
   line-height: 0.1;
-  font-size: 25px;
+  font-size: 30px;
 }
 h6 {
   font-style: italic;
@@ -189,17 +189,14 @@ a:active {
 #more-recommendations {
   text-align: center;
 }
+
 footer {
-  margin-top: 3em;
-  padding-top: 1.5em;
-/*   border-top: 1px solid lightgrey; */
-}
-footer {
+    border-top: 1px solid black;
     position: fixed;
     bottom: 0;
     right: 0;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    background-color: black;
     color: white;
     font-size: 14px;
     text-align: right;
