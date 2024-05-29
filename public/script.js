@@ -4,27 +4,24 @@ const output = document.getElementById("recommendation-output");
 const moreButton = document.getElementById("more-recommendations");
 
 let currentPage = 0;
-let track = '';
-let artist = '';
+let track = "";
+let artist = "";
 
 const showToast = (message, type) => {
-  // Check if an error toast is already displayed
-  if (document.querySelectorAll('.toastify-error').length > 0) {
+  if (document.querySelectorAll(".toastify-error").length > 0) {
     return;
   }
 
-  // Show the toast with custom color and shape
   Toastify({
     text: message,
     duration: 3000,
-    backgroundColor: type === "error" ? "red" : "blue",
     close: true,
     gravity: "top",
     position: "right",
-    // border-radius: 
-    className: `toastify toastify-${type}`,
+    className: type === "error" ? "toastify-error" : "toastify-info",
   }).showToast();
 };
+
 
 const submitForm = async (event) => {
   event.preventDefault();
@@ -32,8 +29,8 @@ const submitForm = async (event) => {
   track = elements.track.value;
   artist = elements.artist.value;
   currentPage = 0;
-  output.innerHTML = ''; // Clear previous recommendations
-  moreButton.style.display = 'none'; // Hide the button before fetching new recommendations
+  output.innerHTML = ""; // Clear previous recommendations
+  moreButton.style.display = "none"; // Hide the button before fetching new recommendations
 
   await fetchRecommendations();
 };
@@ -41,7 +38,11 @@ const submitForm = async (event) => {
 const fetchRecommendations = async () => {
   let result;
   try {
-    result = await axios.post("/recommendations", { track, artist, page: currentPage });
+    result = await axios.post("/recommendations", {
+      track,
+      artist,
+      page: currentPage,
+    });
   } catch (err) {
     let errMsg = "Something went wrong";
     if (err.response && err.response.data && err.response.data.message) {
@@ -54,7 +55,7 @@ const fetchRecommendations = async () => {
   const recommendations = result.data.tracks;
   if (!recommendations.length) {
     showToast("No recommendations found.", "warning");
-    moreButton.style.display = 'none';
+    moreButton.style.display = "none";
     return;
   }
 
@@ -64,8 +65,8 @@ const fetchRecommendations = async () => {
   const recommendationsHtml = template({ track, recommendations });
   output.innerHTML += recommendationsHtml;
 
-  // Show the "More Recommendations" button if there are recommendations
-  moreButton.style.display = 'block';
+  // Show the "More Recommendations" 
+  moreButton.style.display = "block";
 };
 
 const loadMoreRecommendations = async () => {
@@ -94,5 +95,5 @@ const templateRaw = `
 </ul>
 `;
 
-document.getElementById('search-form').addEventListener('submit', submitForm);
-moreButton.addEventListener('click', loadMoreRecommendations);
+document.getElementById("search-form").addEventListener("submit", submitForm);
+moreButton.addEventListener("click", loadMoreRecommendations);

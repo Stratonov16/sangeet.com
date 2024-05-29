@@ -174,16 +174,22 @@ a:active {
   background-color: transparent;
   text-decoration: underline;
 }
-.toastify {
+/* .toastify {
   font-family: "JetBrains Mono", monospace;
   color: #fff;
   background: #333;
-  border-radius: 50%; /* Changed to circle */
-}
+  border-radius: 50%; 
+} */
+
 
 .toastify-error {
-  background: #ff0000; /* Error red */
+  background-color: red !important;
+  border: 2px solid darkred;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 #more-recommendations {
   text-align: center;
