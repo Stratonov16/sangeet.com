@@ -183,3 +183,7 @@ a:active {
   background-color: transparent;
   text-decoration: underline;
 }
+.toastify {
+  font-size: 16px;
+  border-radius: 5px;
+}
