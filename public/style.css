@@ -189,3 +189,31 @@ a:active {
 #more-recommendations {
   text-align: center;
 }
+footer {
+  margin-top: 3em;
+  padding-top: 1.5em;
+/*   border-top: 1px solid lightgrey; */
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 14px;
+    text-align: right;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Style the link inside the footer */
+footer a {
+    color: white;
+    text-decoration: none;
+}
+/* 
+/* Hover effect for the link */
+footer a:hover {
+    text-decoration: underline;
+}
+ */
