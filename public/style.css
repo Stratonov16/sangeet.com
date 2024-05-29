@@ -2,21 +2,35 @@
 /* Customize to your liking! */
 
 /* Define variables*/
+<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Yatra+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap");
 
 * {
   margin: auto;
+=======
+@import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
+
+* {
+margin:auto;
+>>>>>>> origin/main
   box-sizing: border-box;
 }
 
 body {
+<<<<<<< HEAD
   font-family: "JetBrains Mono", monospace;
+=======
+font-family: 'JetBrains Mono', monospace;
+>>>>>>> origin/main
   line-height: 1.5em;
   font-size: 16px;
 }
 
+<<<<<<< HEAD
 body2 {
      background-image: url('https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/blueBackground?v=1717019558174');
   background-size: cover; /* This will make the background cover the entire page */
@@ -50,15 +64,43 @@ h6 {
   max-width: calc(100%);
   line-height: 2;
   font-size: 20px;
+=======
+h1 {
+  font-style: italic;
+/*   font-family: 'Rock 3D', cursive; */
+  font-family: 'Yatra One', cursive;
+  color: white;
+  max-width: calc(100% );
+  line-height: 2;
+  font-size:60px;
+ 
+}
+h5 {
+  font-family: 'Dancing Script', cursive;
+  color: #Fcc201;
+
+  max-width: calc(100% - 5rem);
+  line-height: 0.1;
+    font-size:25px;
+
+ 
+>>>>>>> origin/main
 }
 
 form {
   display: grid;
   grid-gap: 1em;
   padding: 1em;
+<<<<<<< HEAD
   padding-top: 5em;
   max-width: 35ch;
   border-radius: px;
+=======
+  padding-top:3em;
+  max-width: 35ch;
+  border-radius: px;
+  
+>>>>>>> origin/main
 }
 
 input {
@@ -69,6 +111,7 @@ input {
   width: 100%;
 }
 
+<<<<<<< HEAD
 form input[type="submit"] {
   color: black;
   background-color: white;
@@ -79,12 +122,29 @@ form input[type="submit"] {
   padding: 0.5em 1em;
 }
 .btn {
+=======
+form input[type=submit] {
+  color: black;
+  background-color:  white;
+  border: 2px solid currentColor;
+  border-radius: .25em;
+  cursor: pointer;
+  line-height: 1.4em;
+  padding: 0.5em 1em;
+ 
+}
+.btn{  
+>>>>>>> origin/main
   border-radius: 4px;
   height: 44px;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
+<<<<<<< HEAD
   -webkit-transition: all 200ms linear;
+=======
+  -webkit-transition : all 200ms linear;
+>>>>>>> origin/main
   transition: all 200ms linear;
   padding: 0 30px;
   letter-spacing: 1px;
@@ -104,6 +164,7 @@ form input[type="submit"] {
   border: none;
   background-color: #ffeba7;
   color: #102770;
+<<<<<<< HEAD
   box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
 }
 .btn:active,
@@ -123,6 +184,29 @@ form input[type="submit"] {
   display: block;
   margin: 0;
   padding: 0;
+=======
+  box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
+}
+.btn:active,
+.btn:focus{  
+  background-color: #102770;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+}
+.btn:hover{  
+  background-color: #102770;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+}
+
+
+
+.form-group{ 
+  position: relative;
+  display: block;
+    margin: 0;
+    padding: 0;
+>>>>>>> origin/main
 }
 
 .form-style {
@@ -141,16 +225,27 @@ form input[type="submit"] {
   border: none;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
+<<<<<<< HEAD
   box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
+=======
+  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+>>>>>>> origin/main
 }
 .form-style:focus,
 .form-style:active {
   border: none;
   outline: none;
+<<<<<<< HEAD
   box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
 }
 
 form input[type="submit"]:hover {
+=======
+  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+}
+
+form input[type=submit]:hover {
+>>>>>>> origin/main
   opacity: 0.9;
 }
 
@@ -166,7 +261,11 @@ a:link {
   text-decoration: none;
 }
 a:visited {
+<<<<<<< HEAD
   color: white;
+=======
+  color:white;
+>>>>>>> origin/main
   background-color: transparent;
   text-decoration: none;
   text-decoration: none;
@@ -182,6 +281,7 @@ a:active {
   color: white;
   background-color: transparent;
   text-decoration: underline;
+<<<<<<< HEAD
 }
 /* .toastify {
   font-family: "JetBrains Mono", monospace;
@@ -220,3 +320,6 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+=======
+}
+>>>>>>> origin/main

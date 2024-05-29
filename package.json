@@ -10,7 +10,11 @@
     "start": "node server.js"
   },
   "dependencies": {
+<<<<<<< HEAD
     "express": "^4.17.3",
+=======
+    "express": "4.17.1",
+>>>>>>> origin/main
     "axios": "^0.26.1",
     "qs": "^6.10.3"
   },

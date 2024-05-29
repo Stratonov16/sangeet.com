@@ -4,6 +4,7 @@
 {"uuid":"adSBq97hhhpFNUna","deleted":true}
 {"uuid":"adSBq97hhhpFNUnb","deleted":true}
 {"uuid":"adSBq97hhhpFNUnc","deleted":true}
+<<<<<<< HEAD
 {"name":"istockphoto-1161124003-612x612.jpg","date":"2022-03-31T15:15:46.771Z","url":"https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/istockphoto-1161124003-612x612.jpg","type":"image/jpeg","size":17926,"imageWidth":612,"imageHeight":612,"thumbnail":"https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/thumbnails%2Fistockphoto-1161124003-612x612.jpg","thumbnailWidth":330,"thumbnailHeight":330,"uuid":"V7qX9EVeYj7qwn4r"}
 {"uuid":"V7qX9EVeYj7qwn4r","deleted":true}
 {"name":"play.jpg","date":"2022-03-31T15:15:46.771Z","url":"https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/play.jpg","type":"image/jpeg","size":17926,"imageWidth":612,"imageHeight":612,"thumbnail":"https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/thumbnails%2Fistockphoto-1161124003-612x612.jpg","thumbnailWidth":330,"thumbnailHeight":330,"uuid":"V7qX9EVeYj7qwn4r"}
@@ -13,3 +14,5 @@
 {"name":"ios-13-stock-ipados-blue-black-background-amoled-ipad-hd-3840x2160-795(1).jpg","date":"2024-05-29T21:52:38.174Z","url":"https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/ios-13-stock-ipados-blue-black-background-amoled-ipad-hd-3840x2160-795(1).jpg","type":"image/jpeg","size":1141010,"imageWidth":3840,"imageHeight":2160,"thumbnail":"https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/thumbnails%2Fios-13-stock-ipados-blue-black-background-amoled-ipad-hd-3840x2160-795(1).jpg","thumbnailWidth":330,"thumbnailHeight":186,"uuid":"eRsz3b0Cf2Wyistq"}
 {"uuid":"eRsz3b0Cf2Wyistq","deleted":true}
 {"name":"blueBackground","date":"2024-05-29T21:52:38.174Z","url":"https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/blueBackground","type":"image/jpeg","size":1141010,"imageWidth":3840,"imageHeight":2160,"thumbnail":"https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/thumbnails%2Fios-13-stock-ipados-blue-black-background-amoled-ipad-hd-3840x2160-795(1).jpg","thumbnailWidth":330,"thumbnailHeight":186,"uuid":"eRsz3b0Cf2Wyistq"}
+=======
+>>>>>>> origin/main
