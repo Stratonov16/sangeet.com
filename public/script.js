@@ -1,68 +1,79 @@
 const axios = window.axios;
 const handlebars = window.Handlebars;
+const toastr = window.toastr;
 const output = document.getElementById("recommendation-output");
+const moreButton = document.getElementById("more-recommendations");
+
+let currentPage = 0;
+let track = '';
+let artist = '';
 
 const submitForm = async (event) => {
   event.preventDefault();
   const { elements } = event.target;
-  const track = elements.track.value;
-  const artist = elements.artist.value;
-  console.log({ artist, track });
+  track = elements.track.value;
+  artist = elements.artist.value;
+  currentPage = 0;
+  output.innerHTML = ''; // Clear previous recommendations
+
+  await fetchRecommendations();
+};
+
+const fetchRecommendations = async () => {
   let result;
   try {
-    result = await axios.post("/recommendations", { track, artist });
+    result = await axios.post("/recommendations", { track, artist, page: currentPage });
   } catch (err) {
     let errMsg = "Something went wrong";
     if (err.response && err.response.data && err.response.data.message) {
       errMsg = err.response.data.message;
     }
-    Toastify({
-      text: errMsg,
-      duration: 3000,
-      gravity: "top",
-      position: "right",
-      backgroundColor: "#ff0000",
-      stopOnFocus: true,
-    }).showToast();
+    toastr.error(errMsg);
     return;
   }
 
   const recommendations = result.data.tracks;
   if (!recommendations.length) {
-    Toastify({
-      text: "No recommendations found.",
-      duration: 3000,
-      gravity: "top",
-      position: "right",
-      backgroundColor: "#ff0000",
-      stopOnFocus: true,
-    }).showToast();
+    toastr.warning("No recommendations found.");
+    moreButton.style.display = 'none';
     return;
   }
 
-  const topRecs = recommendations.slice(0, 20);
-
-  console.log(topRecs);
+  currentPage += 1;
 
   const template = handlebars.compile(templateRaw);
-  const recommendationsHtml = template({ track, topRecs });
-  output.innerHTML = recommendationsHtml;
+  const recommendationsHtml = template({ track, recommendations });
+  output.innerHTML += recommendationsHtml;
+
+  // Show the "More Recommendations" button if there are recommendations
+  moreButton.style.display = 'block';
+};
+
+const loadMoreRecommendations = async () => {
+  await fetchRecommendations();
 };
 
 const templateRaw = `
-  <p>Discover new tunes!<p>
-  <h6>If you like "{{track}}", you'll love:</h6>
-  <ul>
-    {{#each topRecs}}
-    <li>
-      <h6>
-        <a href="{{external_urls.spotify}}" target="_blank">
-          <img src="{{album.images.2.url}}" width="20px">
-          {{name}}
-        </a>
-        <audio controls src="{{preview_url}}"></audio>
-      </h6>
-    </li>
-    {{/each}}
-  </ul>
+<h6>If you like "{{track}}", you'll love:</h6>
+<ul>
+  {{#each recommendations}}
+  <li>
+    <h6>
+      <a href="{{external_urls.spotify}}">
+        <img src="{{album.images.2.url}}" width="64px">
+        {{name}}
+      </a>
+      by {{#each artists}}{{name}}{{#unless @last}}, {{/unless}}{{/each}}
+      <br>
+      <audio controls>
+        <source src="{{preview_url}}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </h6>
+  </li>
+  {{/each}}
+</ul>
 `;
+
+document.getElementById('search-form').addEventListener('submit', submitForm);
+moreButton.addEventListener('click', loadMoreRecommendations);
