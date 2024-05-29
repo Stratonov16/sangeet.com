@@ -6,16 +6,6 @@
 const express = require("express");
 
 const app = express(); // initialize an express instance called 'app'
-<<<<<<< HEAD
-const axios = require("axios");
-const { getAccessToken } = require("./spotify/auth.js");
-const { searchTracks, getRecommendations } = require("./spotify/actions.js");
-
-if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
-  console.error("ERROR: Missing one or more crucial spotify variables.");
-}
-=======
->>>>>>> origin/main
 
 app.use(express.json()); // set up the app to parse JSON request bodies
 
@@ -27,12 +17,7 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
-<<<<<<< HEAD
-
-app.post("/recommendations", async(req, res) => {
-=======
 app.post("/recommendations", (req, res) => {
->>>>>>> origin/main
   if (!req.body) {
     //if proper body is not made then error message
     return res.status(400).send({ message: "Not working bruh, Retry" });
@@ -42,78 +27,12 @@ app.post("/recommendations", (req, res) => {
     //if both are not put
     return res
       .status(400)
-<<<<<<< HEAD
-      .send({ message: "Put both song and artist name for better result" });
-  }
-
-  let accessToken;
-  try {
-    accessToken = await getAccessToken();
-    console.log("authetication successful");
-  } catch (err) {
-    console.error(err.message);
-    return res
-      .status(500)
-      .send({ message: "Something went wrong when fetching access token" });
-  }
-
-  const http = axios.create({
-    headers: { Authorization: `Bearer ${accessToken}` },
-  });
-
-  let trackId;
-  try {
-    const result = await searchTracks(http, { track, artist });
-    const { tracks } = result;
-    console.log(track);
-    if (!tracks || !tracks.items || !tracks.items.length) {
-      return res
-        .status(404)
-        .send({ message: `Song ${track} by ${artist} not found.` });
-    }
-
-    trackId = tracks.items[0].id;
-    console.log(trackId);
-  } catch (err) {
-    console.error(err.message);
-    return res
-      .status(500)
-      .send({ message: "Something went wrong when searching tracks" });
-  }
-
-  console.log(trackId);
-
-  try {
-    const result = await getRecommendations(http, { trackId })
-    const { tracks } = result
-
-    // if no songs returned in search, send a 404 response
-    if(!tracks || !tracks.length ) {
-      return res.status(404).send({ message: "No recommendations found." })
-    }
-    
-    // Success! Send track recommendations back to client
-    return res.send({ tracks })
-  } catch (err) {
-    console.error(err.message);
-    return res
-      .status(500)
-      .send({ message: "Something went wrong when getting recommendations" });
-  }
-
-  res.send({ message: "OK" });
-=======
       .send({ message: "Put both song and artist for better result" });
   }
   res.send({ message: "ok" });
->>>>>>> origin/main
 });
 
 // start listening on a port provided by Glitch
 app.listen(process.env.PORT, () => {
-<<<<<<< HEAD
-  console.log(`My app listening at port ${process.env.PORT}`);
-=======
   console.log(`Example app listening at port ${process.env.PORT}`);
->>>>>>> origin/main
 });
