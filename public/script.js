@@ -17,10 +17,11 @@ const showToast = (message, type) => {
   Toastify({
     text: message,
     duration: 3000,
+    backgroundColor: type === "error" ? "red" : "blue",
     close: true,
     gravity: "top",
     position: "right",
-    backgroundColor: "",
+    // border-radius: 
     className: `toastify toastify-${type}`,
   }).showToast();
 };
