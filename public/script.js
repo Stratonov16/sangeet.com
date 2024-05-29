@@ -1,12 +1,29 @@
 const axios = window.axios;
 const handlebars = window.Handlebars;
-const toastr = window.toastr;
 const output = document.getElementById("recommendation-output");
 const moreButton = document.getElementById("more-recommendations");
 
 let currentPage = 0;
 let track = '';
 let artist = '';
+
+const showToast = (message, type) => {
+  // Check if an error toast is already displayed
+  if (document.querySelectorAll('.toastify-error').length > 0) {
+    return;
+  }
+
+  // Show the toast with custom color and shape
+  Toastify({
+    text: message,
+    duration: 3000,
+    close: true,
+    gravity: "top",
+    position: "right",
+    backgroundColor: "",
+    className: `toastify toastify-${type}`,
+  }).showToast();
+};
 
 const submitForm = async (event) => {
   event.preventDefault();
@@ -29,13 +46,13 @@ const fetchRecommendations = async () => {
     if (err.response && err.response.data && err.response.data.message) {
       errMsg = err.response.data.message;
     }
-    toastr.error(errMsg);
+    showToast(errMsg, "error");
     return;
   }
 
   const recommendations = result.data.tracks;
   if (!recommendations.length) {
-    toastr.warning("No recommendations found.");
+    showToast("No recommendations found.", "warning");
     moreButton.style.display = 'none';
     return;
   }

@@ -184,9 +184,16 @@ a:active {
   text-decoration: underline;
 }
 .toastify {
-  font-size: 16px;
-  border-radius: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #fff;
+  background: #333;
+  border-radius: 50%; /* Changed to circle */
 }
+
+.toastify-error {
+  background: #FF0000; /* Error red */
+}
+
 #more-recommendations {
   text-align: center;
 }
