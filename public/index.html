@@ -7,22 +7,31 @@
     <meta name="description" content="A song recommendation app" />
 
     <title>sangeet.com - Get Song Recommendations</title>
-    <link id="favicon" rel="icon" href="https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/pixlr-bg-result.png?v=1650800025230" type="image/x-icon">
+    <link
+      id="favicon"
+      rel="icon"
+      href="https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/pixlr-bg-result.png?v=1650800025230"
+      type="image/x-icon"
+    />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    />
     <link rel="stylesheet" href="/style.css" />
     #show toast
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </head>
   <body bgcolor="#121212">
     <main id="main-content">
-      <br>
+      <br />
       <h1 align="center">Sangeet.com</h1>
       <h4 align="center">𝄞 Discover new tracks 𝅘𝅥𝅯</h4>
-      <br>
+      <br />
       <div class="form-group">
         <form id="search-form" onsubmit="submitForm(event)">
           <input
@@ -38,7 +47,7 @@
             name="artist"
             placeholder="Enter artist of above track"
             required
-          /> 
+          />
           <input
             class="btn mt-4"
             type="submit"
@@ -49,13 +58,22 @@
       </div>
       <div id="recommendation-output"></div>
     </main>
-    <button id="more-recommendations" class="btn" style="display:none; margin: 20px auto;">More Recommendations</button>
+    <button
+      id="more-recommendations"
+      class="btn"
+      style="display: none; margin: 20px auto"
+    >
+      More Recommendations
+    </button>
 
-    <br><br><br>
+    <br /><br /><br />
     <footer style="color: white">
       Made By <a href="https://stratonov16.github.io/about-me/">Nikhil</a> With ❤️
     </footer>
-    <div class="glitchButton" style="position: fixed; top: 2em; right: 20px"></div>
+    <div
+      class="glitchButton"
+      style="position: fixed; top: 2em; right: 20px"
+    ></div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>

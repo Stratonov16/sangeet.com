@@ -12,16 +12,25 @@ const showToast = (message, type) => {
     return;
   }
 
+  // Show the toast with custom color and shape
   Toastify({
     text: message,
     duration: 3000,
+    backgroundColor: type === "error" ? "red" : "blue",
     close: true,
     gravity: "top",
     position: "right",
-    className: type === "error" ? "toastify-error" : "toastify-info",
+    // border-radius:
+
+    className: `toastify toastify-${type}`,
+    style: {
+      border: type === "error" ? "2px solid darkred" : "2px solid darkblue",
+      borderRadius: "10px", // for rounded corners
+      padding: "10px", // for some padding inside the toast
+      boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // for a subtle shadow
+    },
   }).showToast();
 };
-
 
 const submitForm = async (event) => {
   event.preventDefault();
@@ -65,7 +74,7 @@ const fetchRecommendations = async () => {
   const recommendationsHtml = template({ track, recommendations });
   output.innerHTML += recommendationsHtml;
 
-  // Show the "More Recommendations" 
+  // Show the "More Recommendations"
   moreButton.style.display = "block";
 };
 
