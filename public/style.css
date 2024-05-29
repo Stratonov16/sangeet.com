@@ -17,6 +17,15 @@ body {
   font-size: 16px;
 }
 
+body2 {
+     background-image: url('https://cdn.glitch.global/885771ac-3cfa-4c5a-bde7-235096795ebd/blueBackground?v=1717019558174');
+  background-size: cover; /* This will make the background cover the entire page */
+  background-repeat: no-repeat; /* This prevents the background from repeating */
+  background-position: center; /* This centers the background image */
+}
+ 
+
+
 h1 {
   font-style: italic;
   /*   font-family: 'Rock 3D', cursive; */
@@ -191,12 +200,12 @@ a:active {
 }
 
 footer {
-    border-top: 1px solid black;
+    border-top: none;
     position: fixed;
     bottom: 0;
     right: 0;
     padding: 5px;
-    background-color: black;
+    background-color: #121212;
     color: white;
     font-size: 14px;
     text-align: right;
@@ -208,9 +217,7 @@ footer a {
     color: white;
     text-decoration: none;
 }
-/* 
-/* Hover effect for the link */
+
 footer a:hover {
     text-decoration: underline;
 }
- */
