@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const getRecommendations = async (http, { trackId }) => {
-  const params = trackId ? { seed_tracks: trackId } : { seed_genres: 'indian' }; // Add more genres here
+  const params = trackId ? { seed_tracks: trackId } : { seed_genres: 'pop,rock,hip-hop' }; // Example genres
   const result = await http.get('https://api.spotify.com/v1/recommendations', {
     params: {
       limit: 10,
