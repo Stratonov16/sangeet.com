@@ -173,3 +173,40 @@ a:active {
   background-color: transparent;
   text-decoration: underline;
 }
+/* .toastify {
+  font-family: "JetBrains Mono", monospace;
+  color: #fff;
+  background: #333;
+  border-radius: 50%; 
+} */
+
+/* 
+.toastify-error {
+  background: #ff0000; 
+}
+ */
+#more-recommendations {
+  text-align: center;
+}
+
+footer {
+    border-top: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    color: white;
+    font-size: 14px;
+    text-align: right;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Style the link inside the footer */
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
