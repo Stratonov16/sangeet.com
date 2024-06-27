@@ -100,5 +100,5 @@ app.post("/recommendations", async (req, res) => {
 
 // start listening on a port provided by Glitch
 app.listen(process.env.PORT, () => {
-  console.log(`My app listening at port ${process.env.PORT}`);
+  console.log(`Example app listening at port ${process.env.PORT}`);
 });
