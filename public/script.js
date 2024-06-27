@@ -72,12 +72,12 @@ const fetchRecommendations = async () => {
   const templateRaw = `
     {{#if track}}
       {{#if track.length}}
-        <h6>If you like "{{track}}", you'll love:</h6>
+        <h6> If you like "{{track}}", you'll love:</h6>
       {{else}}
-        <h6>Here are some random recommendations:</h6>
+        <h6> Here are some random recommendations:</h6>
       {{/if}}
     {{else}}
-      <h6>Here are some random recommendations:</h6>
+      <h6> Here are some random recommendations:</h6>
     {{/if}}
     <ul>
       {{#each recommendations}}
