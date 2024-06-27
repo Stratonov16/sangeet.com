@@ -69,15 +69,25 @@ const fetchRecommendations = async () => {
 
   currentPage += 1;
 
+  const template = handlebars.compile(templateRaw);
+  const recommendationsHtml = template({ track, recommendations });
+  output.innerHTML += recommendationsHtml;
+
+  moreButton.style.display = "block";
+};
+
+const loadMoreRecommendations = async () => {
+  await fetchRecommendations();
+};
   const templateRaw = `
     {{#if track}}
       {{#if track.length}}
-        <h6>If you like "{{track}}", you'll love:</h6>
+        <h6> If you like "{{track}}", you'll love:</h6>
       {{else}}
-        <h6>Here are some random recommendations:</h6>
+        <h6> Here are some random recommendations:</h6>
       {{/if}}
     {{else}}
-      <h6>Here are some random recommendations:</h6>
+      <h6> Here are some random recommendations:</h6>
     {{/if}}
     <ul>
       {{#each recommendations}}
@@ -99,17 +109,6 @@ const fetchRecommendations = async () => {
     </ul>
   `;
 
-  const template = handlebars.compile(templateRaw);
-  const recommendationsHtml = template({ track, recommendations });
-  output.innerHTML += recommendationsHtml;
-
-  moreButton.style.display = "block";
-};
-
-const loadMoreRecommendations = async () => {
-  await fetchRecommendations();
-};
-
 document.getElementById("search-form").addEventListener("submit", submitForm);
 moreButton.addEventListener("click", loadMoreRecommendations);
 
@@ -120,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateButton() {
     if (trackInput.value.trim() === '' && artistInput.value.trim() === '') {
-      submitButton.value = "Get Random Recommendation";
+      submitButton.value = "Get Random";
     } else {
       submitButton.value = "Get Recommendations";
     }

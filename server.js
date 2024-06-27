@@ -2,8 +2,8 @@ const express = require("express");
 
 const app = express(); // initialize an express instance called 'app'
 const axios = require("axios");
-const { getAccessToken } = require("./spotify/auth.js");
-const { searchTracks, getRecommendations } = require("./spotify/actions.js");
+const { getAccessToken } = require("./spotify/auth.js")
+const { searchTracks, getRecommendations } = require("./spotify/actions.js")
 
 if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
   console.error("ERROR: Missing one or more crucial spotify variables.");
@@ -22,19 +22,19 @@ app.get("/", (req, res) => {
 
 app.post("/recommendations", async (req, res) => {
   if (!req.body) {
-    return res.status(400).send({ message: "Not working bruh, Retry" });
+    return res.status(400).send({ message: "Not working bruh, Retry" })
   }
   const { track, artist } = req.body;
 
   let accessToken;
   try {
     accessToken = await getAccessToken();
-    console.log("authentication successful");
+    console.log("authentication successful")
   } catch (err) {
     console.error(err.message);
     return res
       .status(500)
-      .send({ message: "Something went wrong when fetching access token" });
+      .send({ message: "Something went wrong when fetching access token" })
   }
 
   const http = axios.create({
@@ -48,7 +48,7 @@ app.post("/recommendations", async (req, res) => {
       const { tracks } = result;
 
       if (!tracks || !tracks.length) {
-        return res.status(404).send({ message: "No recommendations found." });
+        return res.status(404).send({ message: "No recommendations found." })
       }
 
       return res.send({ tracks });
@@ -57,7 +57,7 @@ app.post("/recommendations", async (req, res) => {
       console.log("iamnick random error")
       return res
         .status(500)
-        .send({ message: "Something went wrong when getting recommendations" });
+        .send({ message: "Something went wrong when getting recommendations" })
     }
   }
 
@@ -68,7 +68,7 @@ app.post("/recommendations", async (req, res) => {
     if (!tracks || !tracks.items || !tracks.items.length) {
       return res
         .status(404)
-        .send({ message: `Song ${track} by ${artist} not found.` });
+        .send({ message: `Song ${track} by ${artist} not found.` })
     }
 
     trackId = tracks.items[0].id;
@@ -76,15 +76,15 @@ app.post("/recommendations", async (req, res) => {
     console.error(err.message);
     return res
       .status(500)
-      .send({ message: "Something went wrong when searching tracks" });
+      .send({ message: "Something went wrong when searching tracks" })
   }
 
   try {
-    const result = await getRecommendations(http, { trackId });
-    const { tracks } = result;
+    const result = await getRecommendations(http, { trackId })
+    const { tracks } = result
 
     if (!tracks || !tracks.length) {
-      return res.status(404).send({ message: "No recommendations found." });
+      return res.status(404).send({ message: "No recommendations found." })
     }
 
     return res.send({ tracks });
@@ -94,7 +94,7 @@ app.post("/recommendations", async (req, res) => {
 
     return res
       .status(500)
-      .send({ message: "Something went wrong when getting recommendations" });
+      .send({ message: "Something went wrong when getting recommendations" })
   }
 });
 
