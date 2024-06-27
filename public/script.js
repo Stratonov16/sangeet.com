@@ -69,7 +69,7 @@ const fetchRecommendations = async () => {
   }
 
   currentPage += 1;
-
+console.log("Track value:", track);
   const template = handlebars.compile(templateRaw);
   const recommendationsHtml = template({ track, recommendations });
   output.innerHTML += recommendationsHtml;
@@ -83,26 +83,54 @@ const loadMoreRecommendations = async () => {
 };
 
 const templateRaw = `
-<h6>If you like "{{track}}", you'll love:</h6>
+{{#if track}}
+  {{#if track.length}}
+    <h6>If you like "{{track}}", you'll love:</h6>
+  {{else}}
+    <h6>Here are some random recommendations:</h6>
+  {{/if}}
+{{else}}
+  <h6>Here are some random recommendations:</h6>
+{{/if}}
 <ul>
   {{#each recommendations}}
-  <li>
-    <h6>
-      <a href="{{external_urls.spotify}}">
-        <img src="{{album.images.2.url}}" width="64px">
-        {{name}}
-      </a>
-      by {{#each artists}}{{name}}{{#unless @last}}, {{/unless}}{{/each}}
-      <br>
-      <audio controls>
-        <source src="{{preview_url}}" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-    </h6>
-  </li>
+    <li>
+      <h6>
+        <a href="{{external_urls.spotify}}">
+          <img src="{{album.images.2.url}}" width="64px">
+          {{name}}
+        </a>
+        by {{#each artists}}{{name}}{{#unless @last}}, {{/unless}}{{/each}}
+        <br>
+        <audio controls>
+          <source src="{{preview_url}}" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </h6>
+    </li>
   {{/each}}
 </ul>
 `;
 
+
 document.getElementById("search-form").addEventListener("submit", submitForm);
 moreButton.addEventListener("click", loadMoreRecommendations);
+// added to show dynamic name
+document.addEventListener('DOMContentLoaded', () => {
+    const trackInput = document.getElementById('track');
+    const artistInput = document.getElementById('artist');
+    const submitButton = document.getElementById('submitButton');
+
+    function updateButton() {
+        if (trackInput.value.trim() === '' && artistInput.value.trim() === '') {
+            submitButton.value = "Get random recommendation";
+        } else {
+            submitButton.value = "Get recommendations";
+        }
+    }
+
+    trackInput.addEventListener('input', updateButton);
+    artistInput.addEventListener('input', updateButton);
+
+    updateButton();
+});
