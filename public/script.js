@@ -1,3 +1,5 @@
+// script.js
+
 const axios = window.axios;
 const handlebars = window.Handlebars;
 const output = document.getElementById("recommendation-output");
@@ -20,14 +22,12 @@ const showToast = (message, type) => {
     close: true,
     gravity: "top",
     position: "right",
-    // border-radius:
-
     className: `toastify toastify-${type}`,
     style: {
       border: type === "error" ? "2px solid darkred" : "2px solid darkblue",
-      borderRadius: "10px", // for rounded corners
-      padding: "10px", // for some padding inside the toast
-      boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // for a subtle shadow
+      borderRadius: "10px",
+      padding: "10px",
+      boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
     },
   }).showToast();
 };
@@ -35,12 +35,11 @@ const showToast = (message, type) => {
 const submitForm = async (event) => {
   event.preventDefault();
   const { elements } = event.target;
-  track = elements.track.value;
-  artist = elements.artist.value;
+  track = elements.track.value.trim();
+  artist = elements.artist.value.trim();
   currentPage = 0;
-  output.innerHTML = ""; // Clear previous recommendations
-  moreButton.style.display = "none"; // Hide the button before fetching new recommendations
-
+  output.innerHTML = "";
+  moreButton.style.display = "none";
   await fetchRecommendations();
 };
 
@@ -69,12 +68,41 @@ const fetchRecommendations = async () => {
   }
 
   currentPage += 1;
-console.log("Track value:", track);
+
+  const templateRaw = `
+    {{#if track}}
+      {{#if track.length}}
+        <h6>If you like "{{track}}", you'll love:</h6>
+      {{else}}
+        <h6>Here are some random recommendations:</h6>
+      {{/if}}
+    {{else}}
+      <h6>Here are some random recommendations:</h6>
+    {{/if}}
+    <ul>
+      {{#each recommendations}}
+        <li>
+          <h6>
+            <a href="{{external_urls.spotify}}">
+              <img src="{{album.images.2.url}}" width="64px">
+              {{name}}
+            </a>
+            by {{#each artists}}{{name}}{{#unless @last}}, {{/unless}}{{/each}}
+            <br>
+            <audio controls>
+              <source src="{{preview_url}}" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </h6>
+        </li>
+      {{/each}}
+    </ul>
+  `;
+
   const template = handlebars.compile(templateRaw);
   const recommendationsHtml = template({ track, recommendations });
   output.innerHTML += recommendationsHtml;
 
-  // Show the "More Recommendations"
   moreButton.style.display = "block";
 };
 
@@ -82,55 +110,24 @@ const loadMoreRecommendations = async () => {
   await fetchRecommendations();
 };
 
-const templateRaw = `
-{{#if track}}
-  {{#if track.length}}
-    <h6>If you like "{{track}}", you'll love:</h6>
-  {{else}}
-    <h6>Here are some random recommendations:</h6>
-  {{/if}}
-{{else}}
-  <h6>Here are some random recommendations:</h6>
-{{/if}}
-<ul>
-  {{#each recommendations}}
-    <li>
-      <h6>
-        <a href="{{external_urls.spotify}}">
-          <img src="{{album.images.2.url}}" width="64px">
-          {{name}}
-        </a>
-        by {{#each artists}}{{name}}{{#unless @last}}, {{/unless}}{{/each}}
-        <br>
-        <audio controls>
-          <source src="{{preview_url}}" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </h6>
-    </li>
-  {{/each}}
-</ul>
-`;
-
-
 document.getElementById("search-form").addEventListener("submit", submitForm);
 moreButton.addEventListener("click", loadMoreRecommendations);
-// added to show dynamic name
+
 document.addEventListener('DOMContentLoaded', () => {
-    const trackInput = document.getElementById('track');
-    const artistInput = document.getElementById('artist');
-    const submitButton = document.getElementById('submitButton');
+  const trackInput = document.getElementById('track');
+  const artistInput = document.getElementById('artist');
+  const submitButton = document.getElementById('submitButton');
 
-    function updateButton() {
-        if (trackInput.value.trim() === '' && artistInput.value.trim() === '') {
-            submitButton.value = "Get random recommendation";
-        } else {
-            submitButton.value = "Get recommendations";
-        }
+  function updateButton() {
+    if (trackInput.value.trim() === '' && artistInput.value.trim() === '') {
+      submitButton.value = "Get Random Recommendation";
+    } else {
+      submitButton.value = "Get Recommendations";
     }
+  }
 
-    trackInput.addEventListener('input', updateButton);
-    artistInput.addEventListener('input', updateButton);
+  trackInput.addEventListener('input', updateButton);
+  artistInput.addEventListener('input', updateButton);
 
-    updateButton();
+  updateButton();
 });
